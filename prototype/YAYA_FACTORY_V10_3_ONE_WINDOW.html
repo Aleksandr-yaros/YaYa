@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07120f">
+  <meta name="description" content="ЯЯ·ФАБРИКА v10.3 — единое окно управления цифровым штатом компании «Ярос».">
+  <title>ЯЯ·ФАБРИКА v10.3 — Одно окно</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #07120f;
+      --ink-soft: #0b1a16;
+      --surface: #0e211b;
+      --surface-2: #122a22;
+      --surface-3: #173329;
+      --line: rgba(199, 234, 216, .13);
+      --line-strong: rgba(199, 234, 216, .24);
+      --text: #effaf4;
+      --muted: #9eb9ad;
+      --emerald: #5ee0a0;
+      --emerald-deep: #1e9d69;
+      --cyan: #68d9e8;
+      --amber: #f5c563;
+      --coral: #ff8776;
+      --violet: #b7a3ff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, .28);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 14% -8%, rgba(94, 224, 160, .14), transparent 32rem),
+        radial-gradient(circle at 96% 12%, rgba(104, 217, 232, .08), transparent 28rem),
+        var(--ink);
+      color: var(--text);
+      font: 14px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input, select { font: inherit; }
+    button { color: inherit; }
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 2px;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 224px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .rail {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 24px 16px;
+      background: rgba(5, 15, 12, .84);
+      border-right: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      z-index: 20;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 3px 8px 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: linear-gradient(145deg, var(--emerald), #b9ffd9);
+      color: #062017;
+      font-size: 21px;
+      font-weight: 900;
+      box-shadow: 0 12px 32px rgba(94, 224, 160, .22);
+    }
+
+    .brand strong { display: block; letter-spacing: .03em; }
+    .brand small { color: var(--muted); }
+
+    .nav { display: grid; gap: 7px; }
+    .nav-button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 35px 1fr auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 7px 10px 7px 7px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .nav-button:hover { color: var(--text); background: rgba(255, 255, 255, .035); }
+    .nav-button.active {
+      color: var(--text);
+      background: linear-gradient(110deg, rgba(94, 224, 160, .14), rgba(104, 217, 232, .04));
+      border-color: rgba(94, 224, 160, .2);
+    }
+
+    .nav-icon {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: rgba(255, 255, 255, .04);
+      font-size: 16px;
+    }
+
+    .nav-button.active .nav-icon { background: rgba(94, 224, 160, .14); }
+    .nav-count { color: #6f9182; font-size: 11px; }
+
+    .rail-foot {
+      margin-top: auto;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .rail-foot strong { display: block; margin-bottom: 5px; }
+    .rail-foot p { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+
+    .safe {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #a8f0c9;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .safe::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 0 5px rgba(94, 224, 160, .09);
+    }
+
+    .shell { min-width: 0; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 15;
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px clamp(18px, 3vw, 40px);
+      background: rgba(7, 18, 15, .78);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+    }
+
+    .crumb strong { display: block; font-size: 15px; }
+    .crumb span { color: var(--muted); font-size: 12px; }
+    .top-actions { display: flex; align-items: center; gap: 9px; }
+
+    .command-button, .icon-button, .button {
+      border: 1px solid var(--line-strong);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, .04);
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .command-button:hover, .icon-button:hover, .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(94, 224, 160, .45);
+      background: rgba(94, 224, 160, .08);
+    }
+
+    .command-button {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 250px;
+      padding: 10px 12px;
+      color: var(--muted);
+      text-align: left;
+    }
+
+    .command-button kbd {
+      margin-left: auto;
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: #c8d8d1;
+      background: rgba(0, 0, 0, .16);
+      font-size: 11px;
+    }
+
+    .icon-button { width: 42px; height: 42px; }
+    .button { padding: 10px 14px; }
+    .button.primary {
+      color: #061c14;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--emerald), #b7f7d3);
+      font-weight: 800;
+    }
+    .button.primary:hover { background: linear-gradient(135deg, #76e8ae, #c9fbe0); }
+    .button.danger { color: #ffc0b7; border-color: rgba(255, 135, 118, .3); }
+    .button.ghost { border-color: transparent; background: transparent; color: var(--muted); }
+    .button.small { padding: 7px 10px; border-radius: 10px; font-size: 12px; }
+
+    main { padding: 30px clamp(18px, 3vw, 40px) 84px; }
+    .workspace { display: none; max-width: 1500px; margin: 0 auto; animation: enter .28s ease; }
+    .workspace.active { display: block; }
+    @keyframes enter { from { opacity: 0; transform: translateY(7px); } }
+
+    .page-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .page-head h1 { margin: 0; font-size: clamp(26px, 4vw, 43px); line-height: 1.06; letter-spacing: -.035em; }
+    .page-head p { max-width: 700px; margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 24px;
+      overflow: hidden;
+      margin-bottom: 18px;
+      padding: clamp(24px, 4vw, 44px);
+      border: 1px solid rgba(94, 224, 160, .2);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 78% 45%, rgba(94, 224, 160, .16), transparent 18rem),
+        linear-gradient(135deg, rgba(18, 45, 36, .95), rgba(9, 26, 21, .98));
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "∞";
+      position: absolute;
+      right: -30px;
+      bottom: -110px;
+      color: rgba(185, 255, 217, .055);
+      font-size: 280px;
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: var(--emerald);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .hero h2 { max-width: 720px; margin: 0; font-size: clamp(32px, 5vw, 62px); line-height: .99; letter-spacing: -.055em; }
+    .hero h2 span { color: var(--emerald); }
+    .hero-copy { max-width: 670px; margin: 18px 0 24px; color: #bcd2c8; font-size: 16px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 9px; }
+
+    .promise {
+      align-self: center;
+      display: grid;
+      gap: 9px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(3, 16, 11, .42);
+    }
+
+    .promise-row {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 13px;
+    }
+    .promise-row:hover { background: rgba(255, 255, 255, .03); }
+    .promise-row i {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(94, 224, 160, .1);
+      color: var(--emerald);
+      font-style: normal;
+    }
+    .promise-row strong { display: block; font-size: 13px; }
+    .promise-row small { color: var(--muted); }
+
+    .grid { display: grid; gap: 16px; }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .span2 { grid-column: span 2; }
+    .section-gap { margin-top: 16px; }
+
+    .card {
+      position: relative;
+      min-width: 0;
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(155deg, rgba(16, 39, 32, .96), rgba(10, 28, 22, .96));
+      box-shadow: 0 18px 52px rgba(0, 0, 0, .12);
+    }
+    .card.soft { background: rgba(11, 30, 23, .6); box-shadow: none; }
+    .card.accent { border-color: rgba(94, 224, 160, .24); }
+    .card.warn { border-color: rgba(245, 197, 99, .24); }
+    .card.danger { border-color: rgba(255, 135, 118, .24); }
+    .card h3 { margin: 0; font-size: 16px; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .card-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+    .metric-label { color: var(--muted); font-size: 12px; }
+    .metric-value { margin: 7px 0 4px; font-size: clamp(24px, 3vw, 36px); font-weight: 850; letter-spacing: -.04em; }
+    .metric-note { color: var(--muted); font-size: 12px; }
+    .delta { display: inline-flex; gap: 4px; align-items: center; color: var(--emerald); }
+    .delta.warn { color: var(--amber); }
+
+    .progress {
+      height: 9px;
+      margin-top: 13px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #06130f;
+    }
+    .progress > span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--emerald-deep), var(--emerald)); }
+    .progress.amber > span { background: linear-gradient(90deg, #b67822, var(--amber)); }
+    .progress.violet > span { background: linear-gradient(90deg, #725dc5, var(--violet)); }
+    .width-64 { width: 64%; }
+    .width-86 { width: 86%; }
+
+    .tone-aizhan { --avatar: linear-gradient(145deg,#5f9f8b,#285b4b); }
+    .tone-temir { --avatar: linear-gradient(145deg,#806fbd,#3e356c); }
+    .tone-dinara { --avatar: linear-gradient(145deg,#b47782,#663944); }
+    .tone-amanat { --avatar: linear-gradient(145deg,#b68b4d,#68471f); }
+    .tone-orlikin { --avatar: linear-gradient(145deg,#4f93a2,#245363); }
+    .tone-salim { --avatar: linear-gradient(145deg,#528b65,#285035); }
+    .tone-arlekin { --avatar: linear-gradient(145deg,#9a5f80,#59304c); }
+    .tone-gauhar { --avatar: linear-gradient(145deg,#6a7ab0,#35416f); }
+    .tone-bakyt { --avatar: linear-gradient(145deg,#8c7653,#504026); }
+    .status-call { --status: var(--coral); }
+    .status-work { --status: var(--amber); }
+    .status-free { --status: var(--emerald); }
+
+    .team-strip { display: grid; grid-template-columns: repeat(9, minmax(72px, 1fr)); gap: 10px; }
+    .person-chip {
+      min-width: 0;
+      padding: 11px 8px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, .025);
+      text-align: center;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+    .person-chip:hover { transform: translateY(-2px); border-color: rgba(94, 224, 160, .3); }
+    .avatar {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 8px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 17px;
+      background: var(--avatar, linear-gradient(145deg, #2c6c57, #183c31));
+      color: white;
+      font-weight: 850;
+    }
+    .avatar::after {
+      content: "";
+      position: absolute;
+      right: -2px;
+      bottom: -2px;
+      width: 10px;
+      height: 10px;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      background: var(--status, var(--emerald));
+    }
+    .person-chip strong { display: block; overflow: hidden; text-overflow: ellipsis; font-size: 12px; }
+    .person-chip small { color: var(--muted); font-size: 10px; }
+
+    .focus-list, .action-list, .timeline { display: grid; gap: 9px; }
+    .focus-item, .action-item, .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 11px;
+      padding: 11px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, .025);
+    }
+    .focus-item:hover, .action-item:hover { border-color: var(--line); }
+    .focus-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--dot, var(--emerald)); box-shadow: 0 0 0 5px color-mix(in srgb, var(--dot, var(--emerald)) 12%, transparent); }
+    .dot-coral { --dot: var(--coral); }
+    .dot-amber { --dot: var(--amber); }
+    .dot-cyan { --dot: var(--cyan); }
+    .focus-item strong, .action-item strong { display: block; font-size: 13px; }
+    .focus-item small, .action-item small, .timeline-item small { color: var(--muted); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #c5d8ce;
+      background: rgba(255, 255, 255, .03);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+    .pill.ok { color: #aaf2cd; border-color: rgba(94, 224, 160, .2); background: rgba(94, 224, 160, .07); }
+    .pill.warn { color: #ffe0a1; border-color: rgba(245, 197, 99, .2); background: rgba(245, 197, 99, .07); }
+    .pill.bad { color: #ffc0b7; border-color: rgba(255, 135, 118, .2); background: rgba(255, 135, 118, .07); }
+
+    .filterbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .filter {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .filter.active { color: #071a12; border-color: transparent; background: var(--emerald); font-weight: 800; }
+
+    .employee-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(330px, .7fr); gap: 16px; }
+    .employee-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .employee-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: rgba(255, 255, 255, .025);
+      cursor: pointer;
+      transition: .18s ease;
+    }
+    .employee-card:hover, .employee-card.selected { border-color: rgba(94, 224, 160, .38); background: rgba(94, 224, 160, .06); transform: translateY(-1px); }
+    .employee-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .employee-card h3 { margin: 13px 0 2px; }
+    .employee-card p { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+    .mini-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .mini-metrics div { padding: 7px; border-radius: 10px; background: rgba(0, 0, 0, .16); }
+    .mini-metrics strong { display: block; font-size: 12px; }
+    .mini-metrics small { color: var(--muted); font-size: 9px; }
+
+    .passport { position: sticky; top: 94px; }
+    .passport-identity { display: flex; align-items: center; gap: 13px; margin-bottom: 17px; }
+    .passport-identity .avatar { width: 62px; height: 62px; margin: 0; border-radius: 20px; font-size: 18px; }
+    .passport-identity h2 { margin: 0; font-size: 21px; }
+    .passport-identity p { margin: 3px 0 0; color: var(--muted); }
+    .passport-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .passport-field { padding: 10px; border-radius: 13px; background: rgba(0, 0, 0, .15); }
+    .passport-field small { display: block; color: var(--muted); font-size: 10px; }
+    .passport-field strong { font-size: 12px; }
+    .passport-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+
+    .kanban { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .lane { min-width: 0; padding: 13px; border: 1px solid var(--line); border-radius: 21px; background: rgba(5, 20, 14, .42); }
+    .lane-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px; padding: 0 4px; }
+    .lane-head strong { font-size: 13px; }
+    .work-card { margin-bottom: 9px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .work-card:last-child { margin-bottom: 0; }
+    .work-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .work-card h3 { margin: 0; font-size: 13px; }
+    .work-card p { margin: 8px 0; color: var(--muted); font-size: 11px; }
+    .work-meta { display: flex; flex-wrap: wrap; gap: 5px; }
+    .work-actions { display: flex; gap: 6px; margin-top: 11px; }
+
+    .flow-line { display: grid; grid-template-columns: repeat(9, minmax(68px, 1fr)); gap: 6px; }
+    .flow-step { position: relative; padding: 9px 6px; border: 1px solid var(--line); border-radius: 12px; color: var(--muted); text-align: center; font-size: 9px; background: rgba(255, 255, 255, .02); }
+    .flow-step.done { color: #b8f6d5; border-color: rgba(94, 224, 160, .2); background: rgba(94, 224, 160, .06); }
+    .flow-step.current { color: #ffe3ab; border-color: rgba(245, 197, 99, .28); background: rgba(245, 197, 99, .08); }
+
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 16px; }
+    table { width: 100%; min-width: 650px; border-collapse: collapse; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid var(--line); text-align: left; font-size: 12px; }
+    tr:last-child td { border-bottom: 0; }
+    th { color: var(--muted); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; }
+
+    .integration-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .integration { padding: 12px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255, 255, 255, .025); }
+    .integration-head { display: flex; align-items: center; justify-content: space-between; gap: 7px; }
+    .integration strong { font-size: 12px; }
+    .integration small { display: block; margin-top: 5px; color: var(--muted); }
+
+    .slm {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      align-items: center;
+      gap: 18px;
+    }
+    .slm-score {
+      width: 138px;
+      height: 138px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--emerald) 0 86%, rgba(255,255,255,.07) 86% 100%);
+    }
+    .slm-score::before { content: ""; grid-area: 1/1; width: 108px; height: 108px; border-radius: 50%; background: var(--surface); }
+    .slm-score div { grid-area: 1/1; z-index: 1; text-align: center; }
+    .slm-score strong { display: block; font-size: 30px; }
+    .slm-score small { color: var(--muted); }
+    .formula { margin: 10px 0; padding: 10px; border-radius: 12px; background: rgba(0,0,0,.16); color: #cce9dc; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .capability-groups { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .capability-group { padding: 12px; border: 1px solid var(--line); border-radius: 15px; background: rgba(255,255,255,.02); }
+    .capability-group strong { display: block; margin-bottom: 7px; color: var(--emerald); font-size: 12px; }
+    .capability-group span { display: block; color: var(--muted); font-size: 10px; line-height: 1.7; }
+
+    .mobile-nav { display: none; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 10vh 18px 18px;
+      background: rgba(1, 8, 5, .72);
+      backdrop-filter: blur(11px);
+    }
+    .overlay.open { display: flex; }
+    .palette {
+      width: min(720px, 100%);
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      border-radius: 23px;
+      background: #0b1c16;
+      box-shadow: 0 40px 110px rgba(0,0,0,.5);
+    }
+    .palette-search { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .palette-search input { width: 100%; padding: 4px; border: 0; outline: 0; background: transparent; color: var(--text); font-size: 17px; }
+    .palette-list { max-height: 58vh; overflow: auto; padding: 8px; }
+    .palette-item {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 0;
+      border-radius: 13px;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .palette-item:hover, .palette-item.active { background: rgba(94, 224, 160, .08); }
+    .palette-item i { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; background: rgba(255,255,255,.04); font-style: normal; }
+    .palette-item strong { display: block; font-size: 13px; }
+    .palette-item small { color: var(--muted); }
+    .palette-item em { color: #789889; font-size: 10px; font-style: normal; }
+    .palette-foot { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 130;
+      max-width: 390px;
+      padding: 13px 15px;
+      border: 1px solid rgba(94, 224, 160, .28);
+      border-radius: 15px;
+      background: #123226;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: .22s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1180px) {
+      .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .team-strip { grid-template-columns: repeat(5, 1fr); }
+      .employee-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .capability-groups { grid-template-columns: repeat(3, 1fr); }
+      .flow-line { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .app { display: block; }
+      .rail { display: none; }
+      .topbar { min-height: 66px; padding: 11px 16px; }
+      .command-button { min-width: auto; width: 42px; height: 42px; justify-content: center; padding: 0; font-size: 0; }
+      .command-button::before { content: "⌕"; color: var(--text); font-size: 21px; }
+      .command-button kbd { display: none; }
+      main { padding: 21px 14px 96px; }
+      .hero { grid-template-columns: 1fr; }
+      .promise { grid-template-columns: repeat(2, 1fr); }
+      .employee-layout { grid-template-columns: 1fr; }
+      .passport { position: static; }
+      .kanban { grid-template-columns: 1fr; }
+      .mobile-nav {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        z-index: 60;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3px;
+        padding: 6px;
+        border: 1px solid var(--line-strong);
+        border-radius: 19px;
+        background: rgba(7, 22, 16, .92);
+        box-shadow: 0 18px 50px rgba(0,0,0,.35);
+        backdrop-filter: blur(18px);
+      }
+      .mobile-nav button { padding: 7px 2px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); font-size: 10px; cursor: pointer; }
+      .mobile-nav button span { display: block; margin-bottom: 2px; font-size: 16px; }
+      .mobile-nav button.active { color: #071a12; background: var(--emerald); font-weight: 800; }
+    }
+
+    @media (max-width: 650px) {
+      .top-actions .button { display: none; }
+      .crumb span { display: none; }
+      .page-head { align-items: flex-start; }
+      .page-head .pill { display: none; }
+      .hero { padding: 23px; border-radius: 23px; }
+      .hero h2 { font-size: 38px; }
+      .promise { grid-template-columns: 1fr; }
+      .g2, .g3, .g4 { grid-template-columns: 1fr; }
+      .span2 { grid-column: auto; }
+      .team-strip { grid-template-columns: repeat(3, 1fr); }
+      .employee-grid { grid-template-columns: 1fr; }
+      .integration-grid { grid-template-columns: 1fr 1fr; }
+      .slm { grid-template-columns: 1fr; }
+      .slm-score { margin: auto; }
+      .capability-groups { grid-template-columns: 1fr; }
+      .flow-line { grid-template-columns: 1fr 1fr; }
+      .toast { right: 12px; bottom: 87px; left: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="rail" aria-label="Основная навигация">
+      <div class="brand">
+        <div class="brand-mark">ЯЯ</div>
+        <div><strong>ЯЯ·ФАБРИКА</strong><small>v10.3 · Одно окно</small></div>
+      </div>
+      <nav class="nav" id="desktopNav" aria-label="Рабочие пространства"></nav>
+      <div class="rail-foot">
+        <strong>Компания «Ярос»</strong>
+        <p>Человек задаёт рамку. Цифровой штат действует. Система хранит доказательства.</p>
+        <span class="safe">synthetic only</span>
+      </div>
+    </aside>
+
+    <div class="shell">
+      <header class="topbar">
+        <div class="crumb">
+          <strong id="currentTitle">Пульс</strong>
+          <span>Tenant: Ярос · 9 цифровых сотрудников · C3/E2</span>
+        </div>
+        <div class="top-actions">
+          <button class="command-button" id="openPalette" type="button" aria-haspopup="dialog">
+            Найти функцию или действие <kbd>Ctrl K</kbd>
+          </button>
+          <button class="button primary" type="button" data-action="draft">＋ Новый сотрудник</button>
+          <button class="icon-button" type="button" title="Уведомления" aria-label="Уведомления">◌</button>
+        </div>
+      </header>
+
+      <main aria-label="Рабочая область ЯЯ·ФАБРИКИ">
+        <section class="workspace active" data-workspace="pulse">
+          <div class="hero">
+            <div>
+              <span class="eyebrow">∞ Живая цифровая рабочая сила</span>
+              <h2>Один взгляд.<br><span>Весь цифровой штат.</span></h2>
+              <p class="hero-copy">ЯЯ·ФАБРИКА превращает разрозненные экраны в единое пространство директора: люди, работа, права, доказательства и экономика встречаются в одной точке решения.</p>
+              <div class="hero-actions">
+                <button class="button primary" type="button" data-go="flow">Открыть поток работы</button>
+                <button class="button" type="button" data-action="voice">◉ Сказать поручение</button>
+                <button class="button ghost" type="button" data-action="map">Карта 30 → 5</button>
+              </div>
+            </div>
+            <div class="promise" role="group" aria-label="Принципы ЯЯ">
+              <div class="promise-row"><i>◎</i><div><strong>Человек у руля</strong><small>AI не самоуполномочивается</small></div></div>
+              <div class="promise-row"><i>↗</i><div><strong>Работа видима</strong><small>от намерения до результата</small></div></div>
+              <div class="promise-row"><i>✓</i><div><strong>Каждый шаг доказуем</strong><small>Evidence и rollback рядом</small></div></div>
+              <div class="promise-row"><i>₽</i><div><strong>Ценность измерима</strong><small>затраты, IMPACT и SLM</small></div></div>
+            </div>
+          </div>
+
+          <div class="grid g4">
+            <article class="card accent"><span class="metric-label">Цифровой штат</span><div class="metric-value">9</div><div class="metric-note"><span class="delta">● 7 в работе</span> · 2 свободны</div></article>
+            <article class="card"><span class="metric-label">IMPACT за месяц</span><div class="metric-value">312 ч</div><div class="metric-note"><span class="delta">↗ 18%</span> · подтверждено Evidence</div></article>
+            <article class="card warn"><span class="metric-label">На подтверждении</span><div class="metric-value">4</div><div class="metric-note"><span class="delta warn">C2–C3</span> · ждут решения</div></article>
+            <article class="card"><span class="metric-label">Валовая маржа</span><div class="metric-value">71%</div><div class="metric-note">412 000 ₽ MRR · здоровая</div></article>
+          </div>
+
+          <article class="card section-gap">
+            <div class="card-head"><div><h3>Цифровой штат сейчас</h3><p>Статус — не отдельная страница, а живой слой управления.</p></div><button class="button small" type="button" data-go="team">Вся команда →</button></div>
+            <div class="team-strip" id="teamStrip"></div>
+          </article>
+
+          <div class="grid g2 section-gap">
+            <article class="card">
+              <div class="card-head"><div><h3>В фокусе директора</h3><p>Только то, что требует человеческого решения.</p></div><span class="pill warn">4 решения</span></div>
+              <div class="focus-list">
+                <div class="focus-item"><span class="focus-dot dot-coral"></span><div><strong>КП на 1,24 млн ₽</strong><small>Темир · превышен лимит самостоятельности</small></div><span class="pill bad">C3</span></div>
+                <div class="focus-item"><span class="focus-dot dot-amber"></span><div><strong>AI-бюджет достиг 82%</strong><small>Прогноз превышения через 6 дней</small></div><span class="pill warn">Бюджет</span></div>
+                <div class="focus-item"><span class="focus-dot dot-cyan"></span><div><strong>1С: новое сопоставление полей</strong><small>Dry-run PASS · требуется Commit Boundary</small></div><span class="pill">C2</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><div><h3>Контур дня</h3><p>От звонка до измеримого результата.</p></div><span class="pill ok">здоров</span></div>
+              <div class="timeline">
+                <div class="timeline-item"><span class="pill ok">09:14</span><div><strong>42 обращения распределены</strong><small>Айжан, Темир, Динара</small></div><span>✓</span></div>
+                <div class="timeline-item"><span class="pill">11:32</span><div><strong>16 задач подготовлены</strong><small>1С · Bitrix24 · Jira</small></div><span>↗</span></div>
+                <div class="timeline-item"><span class="pill warn">сейчас</span><div><strong>4 действия ждут человека</strong><small>никакой молчаливой записи</small></div><span>◎</span></div>
+              </div>
+            </article>
+          </div>
+
+          <article class="card soft section-gap" id="capabilityMap">
+            <div class="card-head"><div><h3>Все возможности сохранены: 30 форм → 5 рабочих пространств</h3><p>Сокращены переходы, а не функции. Детали открываются по контексту или через Ctrl K.</p></div><span class="pill ok">30/30</span></div>
+            <div class="capability-groups" id="capabilityGroups"></div>
+          </article>
+        </section>
+
+        <section class="workspace" data-workspace="team">
+          <div class="page-head"><div><span class="eyebrow">Штат</span><h1>Команда, а не каталог ботов</h1><p>Цифровой сотрудник показан как субъект работы: роль, владелец, полномочия, экономика и ответственность видны вместе.</p></div><span class="pill ok">9 сотрудников</span></div>
+          <div class="filterbar" id="teamFilters">
+            <button class="filter active" type="button" data-filter="all">Все 9</button>
+            <button class="filter" type="button" data-filter="call">На звонке</button>
+            <button class="filter" type="button" data-filter="work">В работе</button>
+            <button class="filter" type="button" data-filter="free">Свободны</button>
+          </div>
+          <div class="employee-layout">
+            <article class="card"><div class="employee-grid" id="employeeGrid"></div></article>
+            <aside class="card passport accent" id="passport" aria-label="Паспорт выбранного цифрового сотрудника" aria-live="polite"></aside>
+          </div>
+        </section>
+
+        <section class="workspace" data-workspace="flow">
+          <div class="page-head"><div><span class="eyebrow">Поток</span><h1>Работа движется слева направо</h1><p>Звонки, AI-анализ, задачи и подтверждения больше не разбросаны по отдельным формам. Один поток показывает состояние и следующий безопасный шаг.</p></div><span class="pill warn">4 на границе решения</span></div>
+          <article class="card soft">
+            <div class="card-head"><div><h3>Путь действия A-904</h3><p>Создать коммерческое предложение и записать проект в 1С.</p></div><span class="pill warn">Commit Boundary</span></div>
+            <div class="flow-line">
+              <div class="flow-step done">Намерение</div><div class="flow-step done">Policy</div><div class="flow-step done">RBAC/ABAC</div><div class="flow-step done">C/E</div><div class="flow-step done">Dry-run</div><div class="flow-step current">Подтверждение</div><div class="flow-step">Commit</div><div class="flow-step">Evidence</div><div class="flow-step">IMPACT</div>
+            </div>
+          </article>
+          <div class="kanban section-gap">
+            <div class="lane"><div class="lane-head"><strong>Сейчас</strong><span class="pill">3</span></div>
+              <article class="work-card"><div class="work-card-head"><h3>Звонок C-10421</h3><span class="pill ok">03:14</span></div><p>Клиент просит поставку к пятнице. Бакыт проверяет остаток.</p><div class="work-meta"><span class="pill">SIP</span><span class="pill">STT</span><span class="pill">Evidence</span></div><div class="work-actions"><button class="button small" type="button" data-action="listen">Открыть контекст</button></div></article>
+              <article class="work-card"><div class="work-card-head"><h3>Расшифровка C-10420</h3><span class="pill">AI</span></div><p>Факты извлечены, результат помечен как FACT + ESTIMATED.</p><div class="work-meta"><span class="pill ok">E2</span><span class="pill">0,42 ₽/мин</span></div></article>
+            </div>
+            <div class="lane"><div class="lane-head"><strong>Следующий шаг</strong><span class="pill">5</span></div>
+              <article class="work-card"><div class="work-card-head"><h3>Проверить остаток</h3><span class="pill ok">dry-run</span></div><p>OneCAdapter прочитает остаток без продуктивной записи.</p><div class="work-meta"><span class="pill">1С 8.3</span><span class="pill">0,06 ₽</span></div><div class="work-actions"><button class="button small" type="button" data-action="simulate">Запустить synthetic</button></div></article>
+              <article class="work-card"><div class="work-card-head"><h3>Подготовить КП</h3><span class="pill warn">C3</span></div><p>Темир подготовил черновик на 1,24 млн ₽.</p><div class="work-meta"><span class="pill">Draft</span><span class="pill">BOT-SALES-001</span></div></article>
+            </div>
+            <div class="lane"><div class="lane-head"><strong>Решение человека</strong><span class="pill warn">4</span></div>
+              <article class="work-card" id="approvalCard"><div class="work-card-head"><h3>КП на 1,24 млн ₽</h3><span class="pill bad">C3/E2</span></div><p>Dry-run PASS. Diff: создаётся проект документа, платёж не выполняется.</p><div class="work-meta"><span class="pill">4 глаза</span><span class="pill">rollback готов</span></div><div class="work-actions"><button class="button primary small" type="button" data-action="approve">Подтвердить</button><button class="button danger small" type="button" data-action="reject">Отклонить</button></div></article>
+              <article class="work-card"><div class="work-card-head"><h3>Field Mapping v6</h3><span class="pill">C2</span></div><p>pbx.call_id → 1С.ДокументЗвонок.ВнешнийID</p><div class="work-meta"><span class="pill ok">validation PASS</span></div></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" data-workspace="control">
+          <div class="page-head"><div><span class="eyebrow">Контроль</span><h1>Безопасность рядом с действием</h1><p>Политики, интеграции, доказательства и rollback собраны в единый контур доверия — без путешествия по техническим разделам.</p></div><span class="pill ok">productionWrite: false</span></div>
+          <div class="grid g3">
+            <article class="card accent"><span class="metric-label">Policy Check</span><div class="metric-value">99,7%</div><div class="metric-note">разрешённых запросов корректно классифицировано</div></article>
+            <article class="card"><span class="metric-label">Evidence coverage</span><div class="metric-value">100%</div><div class="metric-note">критические действия имеют доказательства</div></article>
+            <article class="card warn"><span class="metric-label">Открытые риски</span><div class="metric-value">3</div><div class="metric-note">0 критических · 3 требуют наблюдения</div></article>
+          </div>
+          <div class="grid g2 section-gap">
+            <article class="card"><div class="card-head"><div><h3>Здоровье интеграций</h3><p>Заменяемые исполнители, не ядро продукта.</p></div><span class="pill ok">6/6</span></div><div class="integration-grid" id="integrations"></div></article>
+            <article class="card"><div class="card-head"><div><h3>Контур доверия</h3><p>Минимум полномочий и видимый Commit Boundary.</p></div></div><div class="action-list">
+              <div class="action-item"><span class="focus-dot"></span><div><strong>RBAC + ABAC</strong><small>роль, tenant, цель, время, риск, основание</small></div><span class="pill ok">ON</span></div>
+              <div class="action-item"><span class="focus-dot"></span><div><strong>Vault + masking</strong><small>секреты не отображаются и не попадают в AI</small></div><span class="pill ok">ON</span></div>
+              <div class="action-item"><span class="focus-dot dot-amber"></span><div><strong>Four-eyes для C3–C4</strong><small>разделение обязанностей</small></div><span class="pill warn">4 ждут</span></div>
+              <div class="action-item"><span class="focus-dot"></span><div><strong>Rollback dry-run</strong><small>последняя проверка 12 мин назад</small></div><span class="pill ok">PASS</span></div>
+            </div></article>
+          </div>
+          <article class="card section-gap"><div class="card-head"><div><h3>Evidence Ledger</h3><p>Факт, решение и действие связаны одной цепочкой.</p></div><button class="button small" type="button" data-action="export">Экспорт журнала</button></div><div class="table-wrap"><table><thead><tr><th>Evidence</th><th>Тип</th><th>Объект</th><th>Основание</th><th>Хэш</th><th>Статус</th></tr></thead><tbody><tr><td>EV-903</td><td>Dry-run</td><td>A-904</td><td>commercial_offer</td><td>sha256:991…</td><td><span class="pill ok">verified</span></td></tr><tr><td>EV-902</td><td>AI result</td><td>C-10421</td><td>contract</td><td>sha256:31b…</td><td><span class="pill ok">verified</span></td></tr><tr><td>EV-901</td><td>Call record</td><td>C-10421</td><td>quality_control</td><td>sha256:8aa…</td><td><span class="pill">retention 12м</span></td></tr></tbody></table></div></article>
+        </section>
+
+        <section class="workspace" data-workspace="economy">
+          <div class="page-head"><div><span class="eyebrow">Экономика</span><h1>Каждый запрос должен создавать ценность</h1><p>Usage, стоимость, цена, IMPACT и ответственность соединены в одной экономической картине.</p></div><span class="pill ok">маржа 71%</span></div>
+          <div class="grid g4">
+            <article class="card warn"><span class="metric-label">AI-запросы</span><div class="metric-value" id="usageValue">12 847</div><div class="metric-note">из 20 000 · текущий месяц</div><div class="progress amber"><span id="usageBar" class="width-64"></span></div></article>
+            <article class="card"><span class="metric-label">Полная себестоимость</span><div class="metric-value" id="costValue">18 420 ₽</div><div class="metric-note">AI + STT + tools + storage + API</div></article>
+            <article class="card accent"><span class="metric-label">Доказанный IMPACT</span><div class="metric-value">284 000 ₽</div><div class="metric-note">4,2× к полной стоимости</div></article>
+            <article class="card"><span class="metric-label">Прогноз маржи</span><div class="metric-value">69%</div><div class="metric-note">после достижения лимита</div></article>
+          </div>
+          <div class="grid g2 section-gap">
+            <article class="card"><div class="card-head"><div><h3>Экономика по сотрудникам</h3><p>Кто создаёт эффект и какой ценой.</p></div><button class="button small" type="button" data-action="consume">＋ Synthetic UsageEvent</button></div><div class="table-wrap"><table><thead><tr><th>Сотрудник</th><th>Запросы</th><th>Full cost</th><th>IMPACT</th><th>ROI</th></tr></thead><tbody><tr><td>Темир · продажи</td><td>3 860</td><td>5 420 ₽</td><td>96 000 ₽</td><td><span class="pill ok">17,7×</span></td></tr><tr><td>Айжан · секретарь</td><td>2 240</td><td>3 180 ₽</td><td>61 000 ₽</td><td><span class="pill ok">19,2×</span></td></tr><tr><td>Аманат · контроль</td><td>1 780</td><td>2 940 ₽</td><td>48 000 ₽</td><td><span class="pill ok">16,3×</span></td></tr><tr><td>Орликин · координатор</td><td>1 420</td><td>2 110 ₽</td><td>39 000 ₽</td><td><span class="pill ok">18,5×</span></td></tr></tbody></table></div></article>
+            <article class="card accent"><div class="card-head"><div><h3>SLM · Аманат</h3><p>Готовность сильна, доказательность ещё должна вырасти в пилоте.</p></div><span class="pill warn">C3/E2 → E4</span></div><div class="slm"><div class="slm-score"><div><strong>8,6</strong><small>из 10</small></div></div><div><div class="formula">SLM = (B × C × E) × V × ΔM × L × R × T × A</div><p class="metric-note">A — ответственность за исполнение и последствия. ΔM остаётся 1,0, пока E не подтверждено длительной телеметрией.</p><div class="progress violet"><span class="width-86"></span></div></div></div></article>
+          </div>
+          <div class="grid g3 section-gap">
+            <article class="card soft"><h3>Старт</h3><div class="metric-value">19 900 ₽</div><p class="metric-note">20k запросов · 3 сотрудника · базовые интеграции</p></article>
+            <article class="card accent"><h3>Бизнес</h3><div class="metric-value">59 900 ₽</div><p class="metric-note">80k запросов · 12 сотрудников · полный контроль</p></article>
+            <article class="card soft"><h3>Профи</h3><div class="metric-value">149 900 ₽</div><p class="metric-note">250k запросов · SLA · расширенный Evidence</p></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav" aria-label="Мобильная навигация"></nav>
+
+  <div class="overlay" id="paletteOverlay" role="dialog" aria-modal="true" aria-label="Поиск функций">
+    <div class="palette">
+      <div class="palette-search"><span>⌕</span><input id="paletteInput" type="search" autocomplete="off" placeholder="Например: роли, звонок, расходы, rollback…"><button class="button small ghost" type="button" id="closePalette">Esc</button></div>
+      <div class="palette-list" id="paletteList"></div>
+      <div class="palette-foot"><span>↑↓ выбрать</span><span>Enter открыть</span><span>Esc закрыть</span></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const workspaces = [
+      { id: 'pulse', title: 'Пульс', icon: '◉', count: '1' },
+      { id: 'team', title: 'Команда', icon: 'ЯЯ', count: '2' },
+      { id: 'flow', title: 'Поток', icon: '↗', count: '3' },
+      { id: 'control', title: 'Контроль', icon: '✓', count: '4' },
+      { id: 'economy', title: 'Экономика', icon: '₽', count: '5' }
+    ];
+
+    const employees = [
+      { id:'AIZHAN', name:'Айжан', role:'Секретарь', area:'Офис', state:'call', label:'Звонок 03:14', kpi:'94%', req:'2,2k', cost:'3 180 ₽', owner:'Директор', ce:'C2/E3', autonomy:'Draft + чтение', tone:'tone-aizhan' },
+      { id:'TEMIR', name:'Темир', role:'Продавец', area:'Продажи', state:'work', label:'Готовит КП', kpi:'91%', req:'3,8k', cost:'5 420 ₽', owner:'РОП', ce:'C3/E2', autonomy:'До 250 000 ₽', tone:'tone-temir' },
+      { id:'DINARA', name:'Динара', role:'Сервис', area:'Поддержка', state:'call', label:'Звонок 01:42', kpi:'96%', req:'1,6k', cost:'2 010 ₽', owner:'Сервис-лид', ce:'C2/E3', autonomy:'Draft only', tone:'tone-dinara' },
+      { id:'AMANAT', name:'Аманат', role:'Контролёр', area:'Качество', state:'work', label:'Проверяет 8 фактов', kpi:'98%', req:'1,7k', cost:'2 940 ₽', owner:'Директор', ce:'C3/E3', autonomy:'Только выводы', tone:'tone-amanat' },
+      { id:'ORLIKIN', name:'Орликин', role:'Координатор', area:'Операции', state:'work', label:'6 задач в Jira', kpi:'93%', req:'1,4k', cost:'2 110 ₽', owner:'COO', ce:'C2/E3', autonomy:'Черновики задач', tone:'tone-orlikin' },
+      { id:'SALIM', name:'Салим', role:'Аналитик', area:'Аналитика', state:'work', label:'Считает IMPACT', kpi:'89%', req:'1,1k', cost:'1 640 ₽', owner:'CFO', ce:'C2/E2', autonomy:'Без записи', tone:'tone-salim' },
+      { id:'ARLEKIN', name:'Арлекин', role:'Проверка рамки', area:'Архитектура', state:'free', label:'Готов проверить', kpi:'100%', req:'0,5k', cost:'740 ₽', owner:'Директор', ce:'C1/E3', autonomy:'Без решений', tone:'tone-arlekin' },
+      { id:'GAUHAR', name:'Гаухар', role:'Директорский бот', area:'Управление', state:'work', label:'Пульс обновлён', kpi:'97%', req:'0,4k', cost:'620 ₽', owner:'Директор', ce:'C3/E2', autonomy:'Рекомендации', tone:'tone-gauhar' },
+      { id:'BAKYT', name:'Бакыт', role:'Логист', area:'Логистика', state:'free', label:'Свободен', kpi:'92%', req:'0,8k', cost:'1 280 ₽', owner:'Логист-лид', ce:'C2/E3', autonomy:'Сверка + Draft', tone:'tone-bakyt' }
+    ];
+
+    const capabilities = [
+      ['Пульс','Главный стол директора','Запуск и эволюция','Simulation Lab','Уведомления и риски','История сессии'],
+      ['Команда','Панель 3×3','Каталог сотрудников','Мастер создания','Паспорт сотрудника','Отраслевые шаблоны','Версии сотрудников'],
+      ['Поток','Call Hub','Карточка звонка','Расшифровка','AI-анализ','План действий','Подтверждения','Очередь исполнения','История звонков'],
+      ['Контроль','Интеграции','Field Mapping','Tenant и пользователи','RBAC/ABAC','Согласия','Vault','Evidence Ledger','SIP-аудит','Retention','Инциденты и rollback','История прав'],
+      ['Экономика','Usage & Billing','IMPACT и SLM','Монетизация','История AI-запросов','История расходов']
+    ];
+
+    const integrations = [
+      ['1С 8.3','dry-run','12 мс','warn'], ['SIP / IP-АТС','подготовлено','24 мс','ok'], ['Telegram','demo','18 мс','ok'],
+      ['Bitrix24','sandbox','31 мс','ok'], ['Jira','sandbox','27 мс','ok'], ['AI Gateway','metered','42 мс','warn']
+    ];
+
+    let selectedEmployee = employees[0].id;
+    let usage = 12847;
+    let cost = 18420;
+    let toastTimer;
+    let paletteIndex = 0;
+    let filteredCommands = [];
+
+    const $ = (selector, root=document) => root.querySelector(selector);
+    const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
+
+    function initials(name) { return name.slice(0, 2).toUpperCase(); }
+    function statusPill(state) { return state === 'call' ? 'bad' : state === 'work' ? 'warn' : 'ok'; }
+
+    function buildNavigation() {
+      const desktop = $('#desktopNav');
+      const mobile = $('#mobileNav');
+      desktop.innerHTML = workspaces.map((w, i) => `<button class="nav-button ${i===0?'active':''}" type="button" data-go="${w.id}"><span class="nav-icon">${w.icon}</span><span>${w.title}</span><span class="nav-count">0${w.count}</span></button>`).join('');
+      mobile.innerHTML = workspaces.map((w, i) => `<button class="${i===0?'active':''}" type="button" data-go="${w.id}"><span>${w.icon}</span>${w.title}</button>`).join('');
+    }
+
+    function showWorkspace(id, updateHash=true) {
+      const target = workspaces.find(w => w.id === id) || workspaces[0];
+      $$('.workspace').forEach(el => el.classList.toggle('active', el.dataset.workspace === target.id));
+      $$('[data-go]').forEach(el => el.classList.toggle('active', el.dataset.go === target.id && (el.classList.contains('nav-button') || el.closest('.mobile-nav'))));
+      $('#currentTitle').textContent = target.title;
+      if (updateHash) history.replaceState(null, '', '#' + target.id);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderTeamStrip() {
+      $('#teamStrip').innerHTML = employees.map(e => `<button class="person-chip" type="button" data-employee="${e.id}" data-go="team"><span class="avatar ${e.tone} status-${e.state}">${initials(e.name)}</span><strong>${e.name}</strong><small>${e.label}</small></button>`).join('');
+    }
+
+    function renderEmployeeGrid(filter='all') {
+      const list = filter === 'all' ? employees : employees.filter(e => e.state === filter);
+      $('#employeeGrid').innerHTML = list.map(e => `<article class="employee-card ${e.id===selectedEmployee?'selected':''}" tabindex="0" role="button" data-employee="${e.id}"><div class="employee-card-top"><span class="avatar ${e.tone} status-${e.state}">${initials(e.name)}</span><span class="pill ${statusPill(e.state)}">${e.label}</span></div><h3>${e.name}</h3><p>${e.role} · ${e.area}</p><div class="mini-metrics"><div><strong>${e.kpi}</strong><small>KPI</small></div><div><strong>${e.req}</strong><small>запросы</small></div><div><strong>${e.cost}</strong><small>cost</small></div></div></article>`).join('') || '<p class="metric-note">В этом состоянии сотрудников нет.</p>';
+      bindEmployeeCards();
+    }
+
+    function renderPassport(id) {
+      const e = employees.find(x => x.id === id) || employees[0];
+      selectedEmployee = e.id;
+      $('#passport').innerHTML = `<div class="passport-identity"><span class="avatar ${e.tone} status-${e.state}">${initials(e.name)}</span><div><h2>${e.name}</h2><p>${e.role} · ${e.area}</p></div></div><div class="passport-grid"><div class="passport-field"><small>Паспорт</small><strong>BOT-${e.id}-001</strong></div><div class="passport-field"><small>Владелец</small><strong>${e.owner}</strong></div><div class="passport-field"><small>Класс</small><strong>${e.ce}</strong></div><div class="passport-field"><small>Самостоятельность</small><strong>${e.autonomy}</strong></div><div class="passport-field"><small>KPI</small><strong>${e.kpi}</strong></div><div class="passport-field"><small>Full cost</small><strong>${e.cost}</strong></div></div><div class="formula">Роль → Права → Политика → Действие → Evidence → IMPACT</div><p class="metric-note">Запрещено: расширять собственные права, скрывать расходы, выполнять C2–C4 без требуемой границы подтверждения.</p><div class="passport-actions"><button class="button primary small" type="button" data-action="task">Дать поручение</button><button class="button small" type="button" data-action="passport">Полный паспорт</button></div>`;
+      bindActions($('#passport'));
+    }
+
+    function bindEmployeeCards() {
+      $$('.employee-card').forEach(card => {
+        const select = () => { selectedEmployee = card.dataset.employee; $$('.employee-card').forEach(x => x.classList.toggle('selected', x.dataset.employee === selectedEmployee)); renderPassport(selectedEmployee); };
+        card.addEventListener('click', select);
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); } });
+      });
+    }
+
+    function renderCapabilities() {
+      $('#capabilityGroups').innerHTML = capabilities.map(group => `<div class="capability-group"><strong>${group[0]}</strong>${group.slice(1).map(x => `<span>✓ ${x}</span>`).join('')}</div>`).join('');
+    }
+
+    function renderIntegrations() {
+      $('#integrations').innerHTML = integrations.map(x => `<div class="integration"><div class="integration-head"><strong>${x[0]}</strong><span class="pill ${x[3]}">${x[1]}</span></div><small>${x[2]} · last check now</small></div>`).join('');
+    }
+
+    function notify(message) {
+      const toast = $('#toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    const actionMessages = {
+      draft: 'Создан безопасный BotSpec Draft. Продуктивная запись отключена.',
+      voice: 'Голосовое поручение распознано как черновик. Ничего не исполнено молча.',
+      listen: 'Policy Check PASS: открыт synthetic-контекст звонка, AuditEvent записан.',
+      simulate: 'Dry-run PASS: чтение 1С выполнено на synthetic-данных.',
+      reject: 'Действие отклонено. Причина и Evidence сохранены.',
+      export: 'Локальный synthetic-журнал подготовлен к экспорту.',
+      task: 'Поручение создано как Draft и привязано к паспорту сотрудника.',
+      passport: 'Полный паспорт доступен через контекст — отдельная постоянная страница не нужна.'
+    };
+
+    function bindActions(root=document) {
+      $$('[data-action]', root).forEach(button => {
+        if (button.dataset.bound) return;
+        button.dataset.bound = 'true';
+        button.addEventListener('click', () => handleAction(button.dataset.action));
+      });
+    }
+
+    function handleAction(action) {
+      if (action === 'map') {
+        showWorkspace('pulse');
+        setTimeout(() => $('#capabilityMap').scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+        return;
+      }
+      if (action === 'approve') {
+        const card = $('#approvalCard');
+        card.innerHTML = '<div class="work-card-head"><h3>КП на 1,24 млн ₽</h3><span class="pill ok">подтверждено</span></div><p>Commit Boundary открыт. Создана только версия проекта документа; Evidence EV-904 записан.</p><div class="work-meta"><span class="pill ok">rollback ready</span><span class="pill">production payment: false</span></div>';
+        notify('Подтверждение записано. Открыта ограниченная граница Commit Boundary.');
+        return;
+      }
+      if (action === 'consume') {
+        usage += 1;
+        cost += .18;
+        $('#usageValue').textContent = usage.toLocaleString('ru-RU');
+        $('#costValue').textContent = cost.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₽';
+        $('#usageBar').style.width = Math.min(100, usage / 200) + '%';
+        notify('UsageEvent записан: tenant, пользователь, сотрудник, функция, модель и full cost.');
+        return;
+      }
+      notify(actionMessages[action] || 'Synthetic-действие выполнено и записано.');
+    }
+
+    function commandData() {
+      const navCommands = workspaces.map(w => ({ icon:w.icon, title:w.title, note:'Рабочее пространство', zone:w.title, go:w.id }));
+      const capabilityCommands = capabilities.flatMap(group => group.slice(1).map(title => ({ icon:'·', title, note:'Функция сохранена в новом интерфейсе', zone:group[0], go:workspaces.find(w => w.title===group[0]).id })));
+      return [...navCommands, ...capabilityCommands, { icon:'＋', title:'Создать цифрового сотрудника', note:'Безопасный BotSpec Draft', zone:'Действие', action:'draft' }, { icon:'◉', title:'Сказать поручение', note:'Голос создаёт черновик', zone:'Действие', action:'voice' }];
+    }
+
+    function openPalette() {
+      $('#paletteOverlay').classList.add('open');
+      $('#paletteInput').value = '';
+      paletteIndex = 0;
+      renderPalette('');
+      setTimeout(() => $('#paletteInput').focus(), 30);
+    }
+
+    function closePalette() { $('#paletteOverlay').classList.remove('open'); }
+
+    function renderPalette(query) {
+      const q = query.trim().toLowerCase();
+      filteredCommands = commandData().filter(item => (item.title + ' ' + item.note + ' ' + item.zone).toLowerCase().includes(q));
+      paletteIndex = Math.min(paletteIndex, Math.max(0, filteredCommands.length - 1));
+      $('#paletteList').innerHTML = filteredCommands.length ? filteredCommands.map((item, i) => `<button class="palette-item ${i===paletteIndex?'active':''}" type="button" data-command="${i}"><i>${item.icon}</i><span><strong>${item.title}</strong><small>${item.note}</small></span><em>${item.zone}</em></button>`).join('') : '<div class="card soft"><p class="metric-note">Ничего не найдено. Попробуйте «роль», «звонок» или «расходы».</p></div>';
+      $$('[data-command]').forEach(button => button.addEventListener('click', () => runCommand(+button.dataset.command)));
+    }
+
+    function runCommand(index=paletteIndex) {
+      const item = filteredCommands[index];
+      if (!item) return;
+      closePalette();
+      if (item.go) showWorkspace(item.go);
+      if (item.action) handleAction(item.action);
+      if (!item.action && item.note.startsWith('Функция')) notify('«' + item.title + '» открывается по контексту внутри пространства «' + item.zone + '».');
+    }
+
+    function init() {
+      buildNavigation();
+      renderTeamStrip();
+      renderEmployeeGrid();
+      renderPassport(selectedEmployee);
+      renderCapabilities();
+      renderIntegrations();
+      bindActions();
+
+      document.addEventListener('click', event => {
+        const go = event.target.closest('[data-go]');
+        if (go) {
+          const employee = go.dataset.employee;
+          if (employee) selectedEmployee = employee;
+          showWorkspace(go.dataset.go);
+          if (employee) { renderEmployeeGrid(); renderPassport(employee); }
+        }
+      });
+
+      $('#teamFilters').addEventListener('click', event => {
+        const button = event.target.closest('[data-filter]');
+        if (!button) return;
+        $$('.filter', $('#teamFilters')).forEach(x => x.classList.toggle('active', x === button));
+        renderEmployeeGrid(button.dataset.filter);
+      });
+
+      $('#openPalette').addEventListener('click', openPalette);
+      $('#closePalette').addEventListener('click', closePalette);
+      $('#paletteOverlay').addEventListener('click', event => { if (event.target === $('#paletteOverlay')) closePalette(); });
+      $('#paletteInput').addEventListener('input', event => { paletteIndex = 0; renderPalette(event.target.value); });
+      $('#paletteInput').addEventListener('keydown', event => {
+        if (event.key === 'ArrowDown') { event.preventDefault(); paletteIndex = Math.min(filteredCommands.length - 1, paletteIndex + 1); renderPalette(event.target.value); }
+        if (event.key === 'ArrowUp') { event.preventDefault(); paletteIndex = Math.max(0, paletteIndex - 1); renderPalette(event.target.value); }
+        if (event.key === 'Enter') { event.preventDefault(); runCommand(); }
+      });
+
+      document.addEventListener('keydown', event => {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); openPalette(); }
+        if (event.key === 'Escape') closePalette();
+      });
+
+      const initial = location.hash.replace('#','');
+      if (workspaces.some(w => w.id === initial)) showWorkspace(initial, false);
+    }
+
+    init();
+  </script>
+</body>
+</html>
