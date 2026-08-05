@@ -1,0 +1,32 @@
+{
+  "product": "ЯЯ·ФАБРИКА",
+  "owner": "Ярос",
+  "version": "10.2.0",
+  "codename": "Usage & Billing",
+  "status": "interactive-synthetic-prototype",
+  "date": "2026-08-05",
+  "architecture": "LOGOS·FABRIC v10",
+  "reference_contour": "CALL-001",
+  "impact_class": "C3",
+  "evidence_class": "E2",
+  "target_evidence_class": "E4",
+  "screens": 24,
+  "industry_templates": 10,
+  "features": [
+    "Telegram 3x3 local photo panel",
+    "SIP access simulation with audit",
+    "UsageEvent metering",
+    "subscription limits",
+    "cost and gross margin dashboard",
+    "synthetic-only demo",
+    "copyable technical specification",
+    "local audit export"
+  ],
+  "rules": {
+    "live_data_without_permission": false,
+    "direct_ai_production_write": false,
+    "meter_every_paid_request": true,
+    "masked_secrets": true,
+    "commit_boundary_for_c2_c4": true
+  }
+}
