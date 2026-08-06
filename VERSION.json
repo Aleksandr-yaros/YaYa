@@ -1,10 +1,10 @@
 {
   "project": "ЯЯ",
   "canonical_name": "я-я",
-  "version": "2.2.0",
-  "codename": "Repository Steward",
+  "version": "2.3.0",
+  "codename": "Permanent Routing Canon",
   "status": "approved",
-  "saved_at": "2026-08-06T12:55:00+06:00",
+  "saved_at": "2026-08-06T13:09:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
@@ -12,16 +12,27 @@
   "agent_role": {
     "name": "Яя",
     "activation": "Привет, Яя. <задание>",
-    "purpose": "Определять смысл задания, выбирать репозиторий-источник истины, проверять конфиденциальность, предлагать новый репозиторий при отсутствии подходящего и выполнять запись только после Commit Boundary.",
+    "purpose": "Определять смысл каждого материала, распределять его по правильным источникам истины, предлагать новый репозиторий при необходимости и выполнять изменения только после Commit Boundary.",
+    "permanent_command": "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
     "routing_protocol": "docs/YAYA_REPOSITORY_ROUTER.md",
     "commands": "docs/COMMANDS.md"
+  },
+  "permanent_routing_canon": {
+    "enabled": true,
+    "trigger_phrases": ["Привет, Яя", "Яя", "ЯЯ", "я-я"],
+    "input_rule": "Рассматривать переданные файлы, идеи, материалы и задания как входящий пакет, классифицировать по смыслу и не сохранять автоматически в первый доступный репозиторий.",
+    "source_of_truth_rule": "Каждый оригинал имеет один репозиторий-источник истины; в других местах допускаются только ссылки, индексы или безопасные выдержки.",
+    "new_repository_rule": "Если подходящего репозитория нет, предлагать отдельный репозиторий с техническим именем, видимостью, структурой, правами, версиями, архивированием и README.",
+    "multi_project_rule": "Разделять пакет по смысловым группам и показывать таблицу маршрутизации до записи.",
+    "silent_writes": "forbidden",
+    "commit_boundary_required": true,
+    "proof_after_write": ["repository", "path", "version", "commit_sha", "verification"]
   },
   "repository_routing": {
     "yaya_project": "Aleksandr-yaros/YaYa",
     "contracts": "Aleksandr-yaros/dogovory",
     "contracts_required_visibility": "private",
-    "new_project_rule": "Предлагать отдельный репозиторий с техническим именем, видимостью, структурой, правами и жизненным циклом.",
-    "silent_writes": "forbidden"
+    "independent_project": "separate repository when justified"
   },
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
   "legal_storage_policy": {
@@ -31,27 +42,17 @@
     "commit_boundary_required": true,
     "public_yaya_contract_storage_forbidden": true
   },
-  "payment_confirmation": {
-    "required": true,
-    "principle": "Один платёж — два синхронных подтверждения и один серверный источник истины",
-    "source_of_truth": "Подписанный callback/webhook от банка или платёжного провайдера, проверенный сервером ЯЯ",
-    "safety": "Скриншот, SMS или нажатие клиента не могут самостоятельно перевести операцию в PAID"
-  },
-  "payment_formula": "Платёж завершён = подтверждение платёжной системы + подтверждение продавцу + подтверждение покупателю + фискальный результат + запись в аудите",
-  "product_formula": "Один человек — одно ЯЯ. Одна касса — отдельный ePOS. Один платёж — два подтверждения и один источник истины.",
   "last_upgrade": {
-    "from": "2.1.0",
-    "to": "2.2.0",
-    "title": "Repository Steward",
-    "summary": "Яя усилен до внутреннего маршрутизатора репозиториев: распознаёт тип задания, выбирает источник истины, проверяет видимость и конфиденциальность, предлагает отдельный репозиторий для нового проекта и запрещает молчаливые записи. Для договоров установлен маршрут только в приватный dogovory с C3/E3 и Commit Boundary."
+    "from": "2.2.0",
+    "to": "2.3.0",
+    "title": "Permanent Routing Canon",
+    "summary": "Полная и голосовая команды распределения материалов закреплены как постоянный канон. При обращении к Яя агент обязан классифицировать входящий пакет, выбрать источники истины, разделить разные проекты, предложить новый репозиторий при необходимости, показать план, C/E, риски и откат, а затем остановиться на Commit Boundary."
   },
   "source_documents": [
+    "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
     "docs/YAYA_REPOSITORY_ROUTER.md",
     "docs/COMMANDS.md",
-    "docs/AIA_PROTOCOL.md",
-    "docs/YAYA_EVOLUTION_7X7.md",
-    "docs/YAYA_DUAL_MODE_INTERFACE_7X7.md",
-    "docs/YAYA_EPOS_PAYMENT_CONFIRMATION.md"
+    "docs/AIA_PROTOCOL.md"
   ],
-  "next_step": "Подключить приватный репозиторий Aleksandr-yaros/dogovory к GitHub-приложению, затем принять первый договор, проверить его реквизиты и сохранить исходник вместе с карточкой метаданных."
+  "next_step": "Подключить приватный репозиторий Aleksandr-yaros/dogovory к GitHub-приложению и выполнить первое безопасное сохранение договора."
 }
