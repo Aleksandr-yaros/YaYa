@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Фабрика ботов ЯЯ — демонстрационная картинка</title>
+  <desc id="desc">Электронные сотрудники, роли, тестирование, выпуск и наблюдаемость.</desc>
+  <rect width="960" height="540" rx="32" fill="#f7f4fb"/>
+  <rect x="48" y="48" width="864" height="444" rx="28" fill="#ffffff" stroke="#2d2140" stroke-width="4"/>
+  <text x="96" y="118" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#2d2140">БАЗА 2 · ФАБРИКА БОТОВ ЯЯ</text>
+  <text x="96" y="164" font-family="Arial, sans-serif" font-size="24" fill="#5b4b70">Роль → промпт → тест → релиз → наблюдаемость</text>
+  <g transform="translate(112 214)">
+    <rect x="0" y="0" width="258" height="230" rx="28" fill="#efe8f7" stroke="#6d4a8e" stroke-width="5"/>
+    <circle cx="84" cy="82" r="34" fill="#ffffff" stroke="#6d4a8e" stroke-width="5"/>
+    <circle cx="174" cy="82" r="34" fill="#ffffff" stroke="#6d4a8e" stroke-width="5"/>
+    <circle cx="84" cy="82" r="10" fill="#2d2140"/>
+    <circle cx="174" cy="82" r="10" fill="#2d2140"/>
+    <path d="M80 154c28 24 70 24 98 0" fill="none" stroke="#6d4a8e" stroke-width="8" stroke-linecap="round"/>
+    <rect x="92" y="-34" width="74" height="36" rx="14" fill="#6d4a8e"/>
+    <line x1="129" y1="-34" x2="129" y2="-60" stroke="#6d4a8e" stroke-width="7"/>
+    <circle cx="129" cy="-68" r="12" fill="#6d4a8e"/>
+  </g>
+  <g transform="translate(448 214)">
+    <rect x="0" y="0" width="380" height="230" rx="24" fill="#faf8fd" stroke="#6d4a8e" stroke-width="4"/>
+    <text x="34" y="54" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#2d2140">Электронный сотрудник</text>
+    <text x="34" y="96" font-family="Arial, sans-serif" font-size="22" fill="#5b4b70">Роль: продавец</text>
+    <text x="34" y="132" font-family="Arial, sans-serif" font-size="22" fill="#5b4b70">Статус: TESTED</text>
+    <text x="34" y="168" font-family="Arial, sans-serif" font-size="22" fill="#5b4b70">Версия: v0.1.0</text>
+    <rect x="34" y="188" width="306" height="16" rx="8" fill="#ded2ea"/>
+    <rect x="34" y="188" width="236" height="16" rx="8" fill="#6d4a8e"/>
+  </g>
+  <text x="96" y="458" font-family="Arial, sans-serif" font-size="18" fill="#766d82">Демонстрационный актив · источник истины будущего проекта: Aleksandr-yaros/YaYa-Bot-Factory</text>
+</svg>
