@@ -1,53 +1,57 @@
 {
   "project": "ЯЯ",
   "canonical_name": "я-я",
-  "version": "2.1.0",
-  "codename": "Double Proof",
+  "version": "2.2.0",
+  "codename": "Repository Steward",
   "status": "approved",
-  "saved_at": "2026-08-04T01:10:00+06:00",
+  "saved_at": "2026-08-06T12:55:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "core_principle": "Сначала помоги другим точкам получить покупателей — затем сеть приведёт покупателей тебе.",
-  "application_architecture": {
-    "personal_app": "Одно приложение ЯЯ с личным режимом покупателя и бизнес-режимом владельца или управляющего",
-    "workplace_app": "Отдельное ЯЯ Точка / ePOS для кассы, POS-терминала, общего планшета, стойки, АЗС, парковки и голосового устройства",
-    "shared_backend": "Единый backend, ЯЯ ID, платёжный журнал, ККМ, лояльность и аналитика",
-    "separation_rule": "Объединять личность и экосистему; разделять кассу, деньги, права и рабочее устройство"
+  "agent_role": {
+    "name": "Яя",
+    "activation": "Привет, Яя. <задание>",
+    "purpose": "Определять смысл задания, выбирать репозиторий-источник истины, проверять конфиденциальность, предлагать новый репозиторий при отсутствии подходящего и выполнять запись только после Commit Boundary.",
+    "routing_protocol": "docs/YAYA_REPOSITORY_ROUTER.md",
+    "commands": "docs/COMMANDS.md"
+  },
+  "repository_routing": {
+    "yaya_project": "Aleksandr-yaros/YaYa",
+    "contracts": "Aleksandr-yaros/dogovory",
+    "contracts_required_visibility": "private",
+    "new_project_rule": "Предлагать отдельный репозиторий с техническим именем, видимостью, структурой, правами и жизненным циклом.",
+    "silent_writes": "forbidden"
+  },
+  "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
+  "legal_storage_policy": {
+    "minimum_impact_class": "C3",
+    "minimum_evidence_class": "E3",
+    "private_repository_required": true,
+    "commit_boundary_required": true,
+    "public_yaya_contract_storage_forbidden": true
   },
   "payment_confirmation": {
     "required": true,
     "principle": "Один платёж — два синхронных подтверждения и один серверный источник истины",
-    "seller_confirmation": [
-      "полноэкранный статус ОПЛАТА ПРОШЛА",
-      "крупная сумма и номер заказа",
-      "голосовое подтверждение суммы",
-      "уникальный звук и вибрация",
-      "кнопки Чек, WhatsApp, Печать и Новая продажа"
-    ],
-    "buyer_confirmation": [
-      "полноэкранный статус Оплачено",
-      "сумма, получатель и время",
-      "идентификатор транзакции",
-      "начисленные ЯЯ",
-      "кнопки Открыть чек, WhatsApp, Сохранить и Проблема с оплатой"
-    ],
     "source_of_truth": "Подписанный callback/webhook от банка или платёжного провайдера, проверенный сервером ЯЯ",
-    "fiscal_rule": "Платёжная квитанция и фискальный чек отображаются рядом, но остаются разными доказательствами",
     "safety": "Скриншот, SMS или нажатие клиента не могут самостоятельно перевести операцию в PAID"
   },
   "payment_formula": "Платёж завершён = подтверждение платёжной системы + подтверждение продавцу + подтверждение покупателю + фискальный результат + запись в аудите",
   "product_formula": "Один человек — одно ЯЯ. Одна касса — отдельный ePOS. Один платёж — два подтверждения и один источник истины.",
   "last_upgrade": {
-    "from": "2.0.0",
-    "to": "2.1.0",
-    "title": "Double Proof",
-    "summary": "Добавлен обязательный контур двойного подтверждения платежа покупателю и продавцу, голосовое подтверждение в ePOS, отдельный фискальный чек, WhatsApp-доставка, машина состояний, защита от ложных скриншотов и итоговая гибридная архитектура приложений."
+    "from": "2.1.0",
+    "to": "2.2.0",
+    "title": "Repository Steward",
+    "summary": "Яя усилен до внутреннего маршрутизатора репозиториев: распознаёт тип задания, выбирает источник истины, проверяет видимость и конфиденциальность, предлагает отдельный репозиторий для нового проекта и запрещает молчаливые записи. Для договоров установлен маршрут только в приватный dogovory с C3/E3 и Commit Boundary."
   },
   "source_documents": [
+    "docs/YAYA_REPOSITORY_ROUTER.md",
+    "docs/COMMANDS.md",
+    "docs/AIA_PROTOCOL.md",
     "docs/YAYA_EVOLUTION_7X7.md",
     "docs/YAYA_DUAL_MODE_INTERFACE_7X7.md",
     "docs/YAYA_EPOS_PAYMENT_CONFIRMATION.md"
   ],
-  "next_step": "Сделать кликабельный прототип семи платёжных экранов и техническое API-соглашение для банка, ePOS, ККМ и WhatsApp-доставки чека."
+  "next_step": "Подключить приватный репозиторий Aleksandr-yaros/dogovory к GitHub-приложению, затем принять первый договор, проверить его реквизиты и сохранить исходник вместе с карточкой метаданных."
 }
