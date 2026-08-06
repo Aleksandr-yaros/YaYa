@@ -1,16 +1,17 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.5.0",
-  "codename": "Routing Integrity",
+  "version": "2.6.0",
+  "codename": "Dual Target Proof",
   "status": "approved",
-  "saved_at": "2026-08-06T20:45:00+06:00",
+  "saved_at": "2026-08-06T20:52:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "agent_role": {
     "name": "Яя",
     "canonical_activation": "Яя, <канонический контур>: <задание>",
+    "dual_target_activation": "Яя, две базы: в ЯЯ Оплата сохрани <материал 1>, а в Фабрику ботов ЯЯ сохрани <материал 2>. Раздели источники истины, проверь пути и верни два commit SHA.",
     "accepted_activation": ["Яя, <задание>", "Яя: <задание>", "Привет, Яя. <задание>", "я, я <задание>"],
     "rejected_as_unambiguous_activation": ["ЯЯ: <задание>"],
     "is_repository": false,
@@ -23,24 +24,28 @@
       "status": "active"
     },
     "payment": {
+      "number": 1,
       "name": "ЯЯ Оплата",
-      "aliases": ["ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ"],
+      "aliases": ["ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ", "база номер один"],
       "deprecated_contextual_aliases": ["Проект ЯЯ"],
       "target_repository": "Aleksandr-yaros/YaYa-Pay",
       "visibility": "private",
       "version": "0.1.0",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
+      "demo_path": "projects/yaya-pay/demo/",
       "passport": "projects/yaya-pay/PROJECT.md"
     },
     "bot_factory": {
+      "number": 2,
       "name": "Фабрика ботов ЯЯ",
-      "aliases": ["Фабрика сотрудников ЯЯ", "Фабрика электронных сотрудников ЯЯ", "электронные сотрудники ЯЯ", "сотрудники ЯЯ", "Фабрика ботов"],
+      "aliases": ["Фабрика сотрудников ЯЯ", "Фабрика электронных сотрудников ЯЯ", "электронные сотрудники ЯЯ", "сотрудники ЯЯ", "Фабрика ботов", "база номер два"],
       "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
       "visibility": "private",
       "version": "0.2.0",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
+      "demo_path": "projects/bot-factory/demo/",
       "passport": "projects/bot-factory/PROJECT.md"
     },
     "contracts": {
@@ -50,14 +55,25 @@
       "status": "active"
     }
   },
+  "dual_target_rule": {
+    "phrases": ["обе базы", "две базы", "база номер один и база номер два"],
+    "default_mapping": {
+      "base_1": "ЯЯ Оплата",
+      "base_2": "Фабрика ботов ЯЯ"
+    },
+    "command_document": "docs/YAYA_DUAL_TARGET_COMMAND.md",
+    "proof_required": ["separate canonical context", "separate path", "separate commit_sha", "post-write verification"],
+    "no_false_repository_claims": true
+  },
   "routing_precedence": [
     "explicit canonical context",
+    "explicit base number mapping",
     "lifecycle owner",
     "sensitivity and visibility",
     "semantic classification",
     "block on ambiguity"
   ],
-  "routing_rule": "Яя — вызов агента; ЯЯ Реестр — архитектура и карта; ЯЯ Оплата — QR, платежи, чеки, возвраты и баллы; Фабрика ботов ЯЯ — боты и электронные сотрудники; Договоры Ярос — юридические оригиналы.",
+  "routing_rule": "Яя — вызов агента; ЯЯ Реестр — архитектура и карта; база №1 / ЯЯ Оплата — QR, платежи, чеки, возвраты и баллы; база №2 / Фабрика ботов ЯЯ — боты и электронные сотрудники; Договоры Ярос — юридические оригиналы.",
   "source_of_truth_rule": "Один оригинал имеет один источник истины; в других репозиториях допускаются только ссылки, ID, версии интерфейсов, тесты совместимости, ADR и безопасные выдержки.",
   "api_contract_rule": "Оригинал API-контракта хранит поставщик API; потребитель хранит ссылку, поддерживаемую версию и тест совместимости.",
   "silent_writes": "forbidden",
@@ -65,27 +81,17 @@
   "proof_after_write": ["canonical_context", "repository", "path", "version", "commit_sha", "routing_verification"],
   "routing_tests_required": true,
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
-  "salim_profile": {
-    "B": "10/10",
-    "C": "C3; C4 for payment routes",
-    "E": "E4",
-    "V": "10/10",
-    "delta_M": 1.9,
-    "L": "9/10",
-    "R": "9/10",
-    "T": "9/10",
-    "A": "10/10"
-  },
   "last_upgrade": {
-    "from": "2.4.0",
-    "to": "2.5.0",
-    "title": "Routing Integrity",
-    "summary": "Устранены старые маршруты и неоднозначные обращения. Введён канонический синтаксис Яя, <контур>: <задание>, блокировка записи при отсутствующем репозитории, routing tests и единый контроль источника истины."
+    "from": "2.5.0",
+    "to": "2.6.0",
+    "title": "Dual Target Proof",
+    "summary": "Закреплена постоянная команда раздельной записи в две базы. База №1 означает ЯЯ Оплата, база №2 означает Фабрика ботов ЯЯ. Для каждой базы обязательны отдельные путь, проверка и commit SHA; запрещено выдавать демонстрационный каталог реестра за физически отсутствующий продуктовый репозиторий."
   },
   "source_documents": [
     "README.md",
     "docs/YAYA_NAMESPACE_CANON.md",
     "docs/YAYA_ROUTING_INTEGRITY_AUDIT.md",
+    "docs/YAYA_DUAL_TARGET_COMMAND.md",
     "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
     "docs/YAYA_REPOSITORY_ROUTER.md",
     "docs/COMMANDS.md",
@@ -93,5 +99,15 @@
     "projects/yaya-pay/PROJECT.md",
     "projects/bot-factory/PROJECT.md"
   ],
-  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, затем выполнить контролируемую миграцию рабочих материалов с routing tests и оставить в YaYa только реестр, ADR и ссылки."
+  "demo_evidence": {
+    "base_1": {
+      "path": "projects/yaya-pay/demo/yaya-pay-demo.svg",
+      "commit_sha": "50fb564a8dbc2e81d729efeeed8395b1c0e0cd46"
+    },
+    "base_2": {
+      "path": "projects/bot-factory/demo/yaya-bot-factory-demo.svg",
+      "commit_sha": "32cf1981c7ba7bfba75933cf9a7d0e02b3dc1253"
+    }
+  },
+  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, затем перенести демонстрационные и рабочие материалы по отдельным Commit Boundary и оставить в YaYa только реестр, ADR, ссылки и историю доказательств."
 }
