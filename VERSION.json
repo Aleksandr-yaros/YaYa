@@ -1,113 +1,57 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.6.0",
-  "codename": "Dual Target Proof",
+  "version": "2.7.0",
+  "codename": "Employee Factory OS",
   "status": "approved",
-  "saved_at": "2026-08-06T20:52:00+06:00",
+  "saved_at": "2026-08-06T20:58:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "agent_role": {
     "name": "Яя",
     "canonical_activation": "Яя, <канонический контур>: <задание>",
-    "dual_target_activation": "Яя, две базы: в ЯЯ Оплата сохрани <материал 1>, а в Фабрику ботов ЯЯ сохрани <материал 2>. Раздели источники истины, проверь пути и верни два commit SHA.",
-    "accepted_activation": ["Яя, <задание>", "Яя: <задание>", "Привет, Яя. <задание>", "я, я <задание>"],
-    "rejected_as_unambiguous_activation": ["ЯЯ: <задание>"],
-    "is_repository": false,
-    "purpose": "Определять канонический контур, источник истины, C/E, риск и маршрут; выполнять изменения только после Commit Boundary."
+    "bot_factory_activation": "Яя, Фабрика ботов ЯЯ: <задание>.",
+    "bot_factory_short_activation": ["Яя, база номер два: <задание>", "Яя, Фабрика ботов: <задание>", "Яя, электронные сотрудники ЯЯ: <задание>"],
+    "is_repository": false
   },
   "canonical_contexts": {
-    "registry": {
-      "name": "ЯЯ Реестр",
-      "repository": "Aleksandr-yaros/YaYa",
-      "status": "active"
-    },
-    "payment": {
-      "number": 1,
-      "name": "ЯЯ Оплата",
-      "aliases": ["ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ", "база номер один"],
-      "deprecated_contextual_aliases": ["Проект ЯЯ"],
-      "target_repository": "Aleksandr-yaros/YaYa-Pay",
-      "visibility": "private",
-      "version": "0.1.0",
-      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
-      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
-      "demo_path": "projects/yaya-pay/demo/",
-      "passport": "projects/yaya-pay/PROJECT.md"
-    },
+    "registry": {"name": "ЯЯ Реестр", "repository": "Aleksandr-yaros/YaYa", "status": "active"},
+    "payment": {"number": 1, "name": "ЯЯ Оплата", "target_repository": "Aleksandr-yaros/YaYa-Pay", "visibility": "private", "version": "0.1.0", "status": "REGISTERED / REPOSITORY_CREATION_PENDING"},
     "bot_factory": {
       "number": 2,
       "name": "Фабрика ботов ЯЯ",
-      "aliases": ["Фабрика сотрудников ЯЯ", "Фабрика электронных сотрудников ЯЯ", "электронные сотрудники ЯЯ", "сотрудники ЯЯ", "Фабрика ботов", "база номер два"],
       "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
       "visibility": "private",
-      "version": "0.2.0",
+      "version": "0.3.0",
+      "codename": "Employee Factory OS",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
-      "demo_path": "projects/bot-factory/demo/",
-      "passport": "projects/bot-factory/PROJECT.md"
+      "passport": "projects/bot-factory/PROJECT.md",
+      "master_command": "docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md",
+      "master_task": "projects/bot-factory/BOT_FACTORY_MASTER_TASK.md",
+      "production_cycle": "LEXA → ORLIKIN·SPIDER 8/8 → SPEC → SPEC·GUARD → Build → Test → IMPACT → dry-run → confirmation → Commit Boundary → Release → Observability → Improve Desk / Rollback",
+      "first_reference_release": "internal command bot for Yaros"
     },
-    "contracts": {
-      "name": "Договоры Ярос",
-      "repository": "Aleksandr-yaros/dogovory",
-      "visibility": "private",
-      "status": "active"
-    }
+    "contracts": {"name": "Договоры Ярос", "repository": "Aleksandr-yaros/dogovory", "visibility": "private", "status": "active"}
   },
-  "dual_target_rule": {
-    "phrases": ["обе базы", "две базы", "база номер один и база номер два"],
-    "default_mapping": {
-      "base_1": "ЯЯ Оплата",
-      "base_2": "Фабрика ботов ЯЯ"
-    },
-    "command_document": "docs/YAYA_DUAL_TARGET_COMMAND.md",
-    "proof_required": ["separate canonical context", "separate path", "separate commit_sha", "post-write verification"],
-    "no_false_repository_claims": true
+  "bot_factory_master_rule": {
+    "input": "Treat each request as a production order for an electronic employee",
+    "required_frameworks": ["LEXA", "ORLIKIN·SPIDER 8/8", "SPEC", "SPEC·GUARD", "IMPACT", "Salim/SLM", "dry-run", "Commit Boundary", "rollback"],
+    "required_package": ["EMPLOYEE.md", "SYSTEM_PROMPT.md", "POLICY_MATRIX.md", "KNOWLEDGE_SOURCES.md", "INTEGRATIONS.md", "TEST_PLAN.md", "DEPLOYMENT.md", "OBSERVABILITY.md", "VERSION.json", "CHANGELOG.md"],
+    "c2_c4_gate": "SPEC·GUARD → IMPACT → dry-run → confirmation → Commit Boundary",
+    "silent_writes": "forbidden",
+    "source_of_truth": "Aleksandr-yaros/YaYa-Bot-Factory",
+    "temporary_registry_rule": "Only passports, master documents, ADR, links and explicit demos may stay in YaYa until the private repository exists"
   },
-  "routing_precedence": [
-    "explicit canonical context",
-    "explicit base number mapping",
-    "lifecycle owner",
-    "sensitivity and visibility",
-    "semantic classification",
-    "block on ambiguity"
-  ],
-  "routing_rule": "Яя — вызов агента; ЯЯ Реестр — архитектура и карта; база №1 / ЯЯ Оплата — QR, платежи, чеки, возвраты и баллы; база №2 / Фабрика ботов ЯЯ — боты и электронные сотрудники; Договоры Ярос — юридические оригиналы.",
-  "source_of_truth_rule": "Один оригинал имеет один источник истины; в других репозиториях допускаются только ссылки, ID, версии интерфейсов, тесты совместимости, ADR и безопасные выдержки.",
-  "api_contract_rule": "Оригинал API-контракта хранит поставщик API; потребитель хранит ссылку, поддерживаемую версию и тест совместимости.",
-  "silent_writes": "forbidden",
-  "commit_boundary_required": true,
-  "proof_after_write": ["canonical_context", "repository", "path", "version", "commit_sha", "routing_verification"],
-  "routing_tests_required": true,
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
+  "salim_profile": {"B": "10/10", "C": "C3; C4 for financial/legal actions", "E": "E4 for approved architecture", "V": "9/10", "delta_M": 2.0, "L": "10/10", "R": "10/10", "T": "9/10", "A": "10/10"},
   "last_upgrade": {
-    "from": "2.5.0",
-    "to": "2.6.0",
-    "title": "Dual Target Proof",
-    "summary": "Закреплена постоянная команда раздельной записи в две базы. База №1 означает ЯЯ Оплата, база №2 означает Фабрика ботов ЯЯ. Для каждой базы обязательны отдельные путь, проверка и commit SHA; запрещено выдавать демонстрационный каталог реестра за физически отсутствующий продуктовый репозиторий."
+    "from": "2.6.0",
+    "to": "2.7.0",
+    "title": "Employee Factory OS",
+    "summary": "Фабрика ботов ЯЯ усилена до производственной системы электронных сотрудников. Введены постоянная мастер-команда, итоговое мастер-ТЗ, ORLIKIN·SPIDER 8/8, обязательный пакет сотрудника, жизненный цикл, release gates, IMPACT, dry-run, наблюдаемость и откат. Версия Фабрики повышена до 0.3.0."
   },
-  "source_documents": [
-    "README.md",
-    "docs/YAYA_NAMESPACE_CANON.md",
-    "docs/YAYA_ROUTING_INTEGRITY_AUDIT.md",
-    "docs/YAYA_DUAL_TARGET_COMMAND.md",
-    "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
-    "docs/YAYA_REPOSITORY_ROUTER.md",
-    "docs/COMMANDS.md",
-    "docs/INDEX.md",
-    "projects/yaya-pay/PROJECT.md",
-    "projects/bot-factory/PROJECT.md"
-  ],
-  "demo_evidence": {
-    "base_1": {
-      "path": "projects/yaya-pay/demo/yaya-pay-demo.svg",
-      "commit_sha": "50fb564a8dbc2e81d729efeeed8395b1c0e0cd46"
-    },
-    "base_2": {
-      "path": "projects/bot-factory/demo/yaya-bot-factory-demo.svg",
-      "commit_sha": "32cf1981c7ba7bfba75933cf9a7d0e02b3dc1253"
-    }
-  },
-  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, затем перенести демонстрационные и рабочие материалы по отдельным Commit Boundary и оставить в YaYa только реестр, ADR, ссылки и историю доказательств."
+  "proof_after_write": ["canonical_context", "repository", "path", "version", "commit_sha", "routing_verification"],
+  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaYa-Bot-Factory и перенести паспорт, мастер-команду, мастер-ТЗ и демонстрационные материалы отдельным Commit Boundary."
 }
