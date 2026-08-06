@@ -1,58 +1,71 @@
 {
-  "project": "ЯЯ",
-  "canonical_name": "я-я",
-  "version": "2.3.0",
-  "codename": "Permanent Routing Canon",
+  "project": "ЯЯ Реестр",
+  "canonical_name": "ЯЯ Реестр",
+  "version": "2.4.0",
+  "codename": "Clear Namespaces",
   "status": "approved",
-  "saved_at": "2026-08-06T13:09:00+06:00",
+  "saved_at": "2026-08-06T20:36:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "core_principle": "Сначала помоги другим точкам получить покупателей — затем сеть приведёт покупателей тебе.",
   "agent_role": {
     "name": "Яя",
-    "activation": "Привет, Яя. <задание>",
-    "purpose": "Определять смысл каждого материала, распределять его по правильным источникам истины, предлагать новый репозиторий при необходимости и выполнять изменения только после Commit Boundary.",
-    "permanent_command": "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
-    "routing_protocol": "docs/YAYA_REPOSITORY_ROUTER.md",
-    "commands": "docs/COMMANDS.md"
+    "activation": ["Яя, <задание>", "Яя: <задание>", "Привет, Яя. <задание>", "я, я <задание>"],
+    "is_repository": false,
+    "purpose": "Принимать обращение, определять смысл, выбирать источник истины и выполнять изменения только после Commit Boundary."
   },
-  "permanent_routing_canon": {
-    "enabled": true,
-    "trigger_phrases": ["Привет, Яя", "Яя", "ЯЯ", "я-я"],
-    "input_rule": "Рассматривать переданные файлы, идеи, материалы и задания как входящий пакет, классифицировать по смыслу и не сохранять автоматически в первый доступный репозиторий.",
-    "source_of_truth_rule": "Каждый оригинал имеет один репозиторий-источник истины; в других местах допускаются только ссылки, индексы или безопасные выдержки.",
-    "new_repository_rule": "Если подходящего репозитория нет, предлагать отдельный репозиторий с техническим именем, видимостью, структурой, правами, версиями, архивированием и README.",
-    "multi_project_rule": "Разделять пакет по смысловым группам и показывать таблицу маршрутизации до записи.",
-    "silent_writes": "forbidden",
-    "commit_boundary_required": true,
-    "proof_after_write": ["repository", "path", "version", "commit_sha", "verification"]
+  "namespace_canon": {
+    "document": "docs/YAYA_NAMESPACE_CANON.md",
+    "agent": "Яя",
+    "registry": {
+      "name": "ЯЯ Реестр",
+      "repository": "Aleksandr-yaros/YaYa"
+    },
+    "payment_product": {
+      "name": "ЯЯ Оплата",
+      "aliases": ["Проект ЯЯ", "ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ"],
+      "target_repository": "Aleksandr-yaros/YaYa-Pay",
+      "visibility": "private",
+      "version": "0.1.0",
+      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "passport": "projects/yaya-pay/PROJECT.md"
+    },
+    "bot_factory": {
+      "name": "Фабрика ботов ЯЯ",
+      "aliases": ["Фабрика сотрудников ЯЯ", "Фабрика электронных сотрудников ЯЯ", "электронные сотрудники ЯЯ", "сотрудники ЯЯ", "Фабрика ботов"],
+      "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
+      "visibility": "private",
+      "version": "0.2.0",
+      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "passport": "projects/bot-factory/PROJECT.md"
+    },
+    "contracts": {
+      "name": "Договоры Ярос",
+      "repository": "Aleksandr-yaros/dogovory",
+      "visibility": "private"
+    }
   },
-  "repository_routing": {
-    "yaya_project": "Aleksandr-yaros/YaYa",
-    "contracts": "Aleksandr-yaros/dogovory",
-    "contracts_required_visibility": "private",
-    "independent_project": "separate repository when justified"
-  },
+  "routing_rule": "Яя — обращение к агенту; ЯЯ Реестр — общая архитектура и карта; ЯЯ Оплата — QR, платежи, чеки и баллы; Фабрика ботов ЯЯ — боты и электронные сотрудники; dogovory — юридические оригиналы.",
+  "source_of_truth_rule": "Один оригинал имеет один источник истины; в других репозиториях допускаются только ссылки, ID, API-контракты и безопасные выдержки.",
+  "silent_writes": "forbidden",
+  "commit_boundary_required": true,
+  "proof_after_write": ["repository", "path", "version", "commit_sha", "verification"],
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
-  "legal_storage_policy": {
-    "minimum_impact_class": "C3",
-    "minimum_evidence_class": "E3",
-    "private_repository_required": true,
-    "commit_boundary_required": true,
-    "public_yaya_contract_storage_forbidden": true
-  },
   "last_upgrade": {
-    "from": "2.2.0",
-    "to": "2.3.0",
-    "title": "Permanent Routing Canon",
-    "summary": "Полная и голосовая команды распределения материалов закреплены как постоянный канон. При обращении к Яя агент обязан классифицировать входящий пакет, выбрать источники истины, разделить разные проекты, предложить новый репозиторий при необходимости, показать план, C/E, риски и откат, а затем остановиться на Commit Boundary."
+    "from": "2.3.0",
+    "to": "2.4.0",
+    "title": "Clear Namespaces",
+    "summary": "Обращение Яя окончательно отделено от проектов. Платёжный продукт зарегистрирован как ЯЯ Оплата / YaYa-Pay. Фабрика электронных сотрудников зарегистрирована как Фабрика ботов ЯЯ / YaYa-Bot-Factory. Установлены разные алиасы, границы, видимость и источники истины."
   },
   "source_documents": [
+    "docs/YAYA_NAMESPACE_CANON.md",
     "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
     "docs/YAYA_REPOSITORY_ROUTER.md",
     "docs/COMMANDS.md",
-    "docs/AIA_PROTOCOL.md"
+    "docs/AIA_PROTOCOL.md",
+    "projects/yaya-pay/PROJECT.md",
+    "projects/bot-factory/PROJECT.md"
   ],
-  "next_step": "Подключить приватный репозиторий Aleksandr-yaros/dogovory к GitHub-приложению и выполнить первое безопасное сохранение договора."
+  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, перенести соответствующие материалы по отдельным Commit Boundary и оставить в YaYa только реестр и ссылки."
 }
