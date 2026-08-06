@@ -1,34 +1,36 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.4.0",
-  "codename": "Clear Namespaces",
+  "version": "2.5.0",
+  "codename": "Routing Integrity",
   "status": "approved",
-  "saved_at": "2026-08-06T20:36:00+06:00",
+  "saved_at": "2026-08-06T20:45:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
-  "core_principle": "Сначала помоги другим точкам получить покупателей — затем сеть приведёт покупателей тебе.",
   "agent_role": {
     "name": "Яя",
-    "activation": ["Яя, <задание>", "Яя: <задание>", "Привет, Яя. <задание>", "я, я <задание>"],
+    "canonical_activation": "Яя, <канонический контур>: <задание>",
+    "accepted_activation": ["Яя, <задание>", "Яя: <задание>", "Привет, Яя. <задание>", "я, я <задание>"],
+    "rejected_as_unambiguous_activation": ["ЯЯ: <задание>"],
     "is_repository": false,
-    "purpose": "Принимать обращение, определять смысл, выбирать источник истины и выполнять изменения только после Commit Boundary."
+    "purpose": "Определять канонический контур, источник истины, C/E, риск и маршрут; выполнять изменения только после Commit Boundary."
   },
-  "namespace_canon": {
-    "document": "docs/YAYA_NAMESPACE_CANON.md",
-    "agent": "Яя",
+  "canonical_contexts": {
     "registry": {
       "name": "ЯЯ Реестр",
-      "repository": "Aleksandr-yaros/YaYa"
+      "repository": "Aleksandr-yaros/YaYa",
+      "status": "active"
     },
-    "payment_product": {
+    "payment": {
       "name": "ЯЯ Оплата",
-      "aliases": ["Проект ЯЯ", "ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ"],
+      "aliases": ["ЯЯ QR", "ЯЯ Баллы", "ЯЯ Точка", "ЯЯ ePOS", "платёжный ЯЯ"],
+      "deprecated_contextual_aliases": ["Проект ЯЯ"],
       "target_repository": "Aleksandr-yaros/YaYa-Pay",
       "visibility": "private",
       "version": "0.1.0",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "passport": "projects/yaya-pay/PROJECT.md"
     },
     "bot_factory": {
@@ -38,34 +40,58 @@
       "visibility": "private",
       "version": "0.2.0",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "passport": "projects/bot-factory/PROJECT.md"
     },
     "contracts": {
       "name": "Договоры Ярос",
       "repository": "Aleksandr-yaros/dogovory",
-      "visibility": "private"
+      "visibility": "private",
+      "status": "active"
     }
   },
-  "routing_rule": "Яя — обращение к агенту; ЯЯ Реестр — общая архитектура и карта; ЯЯ Оплата — QR, платежи, чеки и баллы; Фабрика ботов ЯЯ — боты и электронные сотрудники; dogovory — юридические оригиналы.",
-  "source_of_truth_rule": "Один оригинал имеет один источник истины; в других репозиториях допускаются только ссылки, ID, API-контракты и безопасные выдержки.",
+  "routing_precedence": [
+    "explicit canonical context",
+    "lifecycle owner",
+    "sensitivity and visibility",
+    "semantic classification",
+    "block on ambiguity"
+  ],
+  "routing_rule": "Яя — вызов агента; ЯЯ Реестр — архитектура и карта; ЯЯ Оплата — QR, платежи, чеки, возвраты и баллы; Фабрика ботов ЯЯ — боты и электронные сотрудники; Договоры Ярос — юридические оригиналы.",
+  "source_of_truth_rule": "Один оригинал имеет один источник истины; в других репозиториях допускаются только ссылки, ID, версии интерфейсов, тесты совместимости, ADR и безопасные выдержки.",
+  "api_contract_rule": "Оригинал API-контракта хранит поставщик API; потребитель хранит ссылку, поддерживаемую версию и тест совместимости.",
   "silent_writes": "forbidden",
   "commit_boundary_required": true,
-  "proof_after_write": ["repository", "path", "version", "commit_sha", "verification"],
+  "proof_after_write": ["canonical_context", "repository", "path", "version", "commit_sha", "routing_verification"],
+  "routing_tests_required": true,
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
+  "salim_profile": {
+    "B": "10/10",
+    "C": "C3; C4 for payment routes",
+    "E": "E4",
+    "V": "10/10",
+    "delta_M": 1.9,
+    "L": "9/10",
+    "R": "9/10",
+    "T": "9/10",
+    "A": "10/10"
+  },
   "last_upgrade": {
-    "from": "2.3.0",
-    "to": "2.4.0",
-    "title": "Clear Namespaces",
-    "summary": "Обращение Яя окончательно отделено от проектов. Платёжный продукт зарегистрирован как ЯЯ Оплата / YaYa-Pay. Фабрика электронных сотрудников зарегистрирована как Фабрика ботов ЯЯ / YaYa-Bot-Factory. Установлены разные алиасы, границы, видимость и источники истины."
+    "from": "2.4.0",
+    "to": "2.5.0",
+    "title": "Routing Integrity",
+    "summary": "Устранены старые маршруты и неоднозначные обращения. Введён канонический синтаксис Яя, <контур>: <задание>, блокировка записи при отсутствующем репозитории, routing tests и единый контроль источника истины."
   },
   "source_documents": [
+    "README.md",
     "docs/YAYA_NAMESPACE_CANON.md",
+    "docs/YAYA_ROUTING_INTEGRITY_AUDIT.md",
     "docs/YAYA_PERMANENT_ROUTING_COMMAND.md",
     "docs/YAYA_REPOSITORY_ROUTER.md",
     "docs/COMMANDS.md",
-    "docs/AIA_PROTOCOL.md",
+    "docs/INDEX.md",
     "projects/yaya-pay/PROJECT.md",
     "projects/bot-factory/PROJECT.md"
   ],
-  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, перенести соответствующие материалы по отдельным Commit Boundary и оставить в YaYa только реестр и ссылки."
+  "next_step": "Создать два приватных репозитория Aleksandr-yaros/YaYa-Pay и Aleksandr-yaros/YaYa-Bot-Factory, затем выполнить контролируемую миграцию рабочих материалов с routing tests и оставить в YaYa только реестр, ADR и ссылки."
 }
