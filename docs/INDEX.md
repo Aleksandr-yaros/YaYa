@@ -1,62 +1,39 @@
 # Индекс знаний ЯЯ Реестра
 
-Текущая версия системы: **v2.5.0 Routing Integrity**
+Текущая версия системы: **v2.7.0 Employee Factory OS**
 
 | ID | Раздел | Статус | Источник истины |
 |---|---|---|---|
 | YAYA-REGISTRY | ЯЯ Реестр: архитектура и карта экосистемы | approved | `Aleksandr-yaros/YaYa` |
 | YAYA-NAMESPACE | Разделение обращения и проектов | approved | `docs/YAYA_NAMESPACE_CANON.md` |
-| YAYA-ROUTING-INTEGRITY | Аудит недостатков, блокировки и routing tests | approved | `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` |
-| YAYA-PAY | ЯЯ Оплата: QR, подтверждение оплаты, чек, возвраты и баллы | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Pay`; паспорт `projects/yaya-pay/PROJECT.md` |
-| YAYA-BOT-FACTORY | Фабрика ботов ЯЯ: электронные сотрудники | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Bot-Factory`; паспорт `projects/bot-factory/PROJECT.md` |
+| YAYA-ROUTING-INTEGRITY | Аудит маршрутизации и routing tests | approved | `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` |
+| YAYA-DUAL-TARGET | Раздельная работа с базами №1 и №2 | approved | `docs/YAYA_DUAL_TARGET_COMMAND.md` |
+| YAYA-PAY | ЯЯ Оплата | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Pay` |
+| YAYA-BOT-FACTORY | Фабрика ботов ЯЯ v0.3.0 | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Bot-Factory` |
+| YAYA-BOT-FACTORY-COMMAND | Постоянная мастер-команда Фабрики | approved | `docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md` |
+| YAYA-BOT-FACTORY-TASK | Итоговое мастер-ТЗ Фабрики | approved | `projects/bot-factory/BOT_FACTORY_MASTER_TASK.md` |
 | YAROS-CONTRACTS | Договоры компании «Ярос» | active | private `Aleksandr-yaros/dogovory` |
-| YAYA-ROUTER | Маршрутизация заданий | approved v2.0.0 | `docs/YAYA_REPOSITORY_ROUTER.md` |
-| YAYA-COMMANDS | Канонические команды агента | approved v2.0.0 | `docs/COMMANDS.md` |
-| YAYA-PERMANENT-COMMAND | Постоянная команда маршрутизации | approved v2.0.0 | `docs/YAYA_PERMANENT_ROUTING_COMMAND.md` |
 
-## Каноническое обращение
+## Каноническое обращение к Фабрике
 
 ```text
-Яя, <канонический контур>: <задание>
+Яя, Фабрика ботов ЯЯ: <задание>.
 ```
 
-Контуры:
+Короткие формы:
 
-- `ЯЯ Реестр`;
-- `ЯЯ Оплата`;
-- `Фабрика ботов ЯЯ`;
-- `Договоры Ярос`.
+- `Яя, база номер два: <задание>`;
+- `Яя, Фабрика ботов: <задание>`;
+- `Яя, электронные сотрудники ЯЯ: <задание>`.
 
-## Правила точности
+## Производственный контракт
 
-- `Яя,`, `Яя:` и `Привет, Яя.` — вызов агента.
-- `ЯЯ:` само по себе не является однозначным вызовом и не разрешает запись.
-- `Проект ЯЯ` — устаревающий алиас, допустимый для `ЯЯ Оплата` только при явном платёжном контексте.
-- Явный канонический контур имеет приоритет, но проверяется на конфликт с содержанием.
-- При отсутствии `YaYa-Pay` или `YaYa-Bot-Factory` рабочая запись получает статус `BLOCKED_BY_REPOSITORY` и не перенаправляется в `YaYa`.
+Каждый запрос рассматривается как заказ на электронного сотрудника и проходит:
 
-## Карта маршрутизации
+`LEXA → ORLIKIN·SPIDER 8/8 → SPEC → SPEC·GUARD → Build → Test → IMPACT → dry-run → подтверждение → Commit Boundary → Release → Observability → Improve Desk / Rollback`.
 
-- общая архитектура, стандарты, паспорта и ADR → `Aleksandr-yaros/YaYa`;
-- QR, платежи, ePOS, чеки, возвраты, сверка и баллы → `Aleksandr-yaros/YaYa-Pay`;
-- боты, промпты, роли, код и электронные сотрудники → `Aleksandr-yaros/YaYa-Bot-Factory`;
-- договоры, приложения, акты и юридические оригиналы → `Aleksandr-yaros/dogovory`.
+Для C2–C4 обязательны C/E, SPEC·GUARD, IMPACT, dry-run, подтверждение, Commit Boundary и план отката.
 
-## Routing tests
+## Ограничение
 
-Перед изменением маршрутов проверяются:
-
-1. стандарт → `ЯЯ Реестр`;
-2. платёж/QR/чек/баллы → `ЯЯ Оплата`;
-3. бот/промпт/сотрудник → `Фабрика ботов ЯЯ`;
-4. договор/акт → `Договоры Ярос`;
-5. `ЯЯ:` → неоднозначность и запрет записи;
-6. отсутствующий репозиторий → `BLOCKED_BY_REPOSITORY`.
-
-## Правило источника истины
-
-Каждый оригинал имеет один источник истины. В других контурах допускаются только ссылки, ID, версии интерфейсов, тесты совместимости, ADR и безопасные выдержки.
-
-## Следующий шаг
-
-Создать private-репозитории `Aleksandr-yaros/YaYa-Pay` и `Aleksandr-yaros/YaYa-Bot-Factory`, затем провести контролируемую миграцию и routing tests.
+Private-репозиторий `Aleksandr-yaros/YaYa-Bot-Factory` ещё не создан. До его создания рабочий код, production-промпты и конфигурации блокируются статусом `BLOCKED_BY_REPOSITORY`; в `YaYa` допускаются только паспорта, мастер-документы, ADR, ссылки и явные демонстрационные материалы.
