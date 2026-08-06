@@ -1,57 +1,107 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.7.0",
-  "codename": "Employee Factory OS",
+  "version": "2.8.0",
+  "codename": "Factory Address Protocol",
   "status": "approved",
-  "saved_at": "2026-08-06T20:58:00+06:00",
+  "saved_at": "2026-08-06T21:06:00+06:00",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "agent_role": {
     "name": "Яя",
-    "canonical_activation": "Яя, <канонический контур>: <задание>",
-    "bot_factory_activation": "Яя, Фабрика ботов ЯЯ: <задание>.",
-    "bot_factory_short_activation": ["Яя, база номер два: <задание>", "Яя, Фабрика ботов: <задание>", "Яя, электронные сотрудники ЯЯ: <задание>"],
+    "canonical_activation": "Яя, <канонический контур>: <НАМЕРЕНИЕ> <задание>.",
+    "bot_factory_activation": "Яя, Фабрика ботов ЯЯ: <НАМЕРЕНИЕ> <задание>.",
+    "bot_factory_retrieval": "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
+    "bot_factory_short_retrieval": "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ.",
     "is_repository": false
   },
   "canonical_contexts": {
-    "registry": {"name": "ЯЯ Реестр", "repository": "Aleksandr-yaros/YaYa", "status": "active"},
-    "payment": {"number": 1, "name": "ЯЯ Оплата", "target_repository": "Aleksandr-yaros/YaYa-Pay", "visibility": "private", "version": "0.1.0", "status": "REGISTERED / REPOSITORY_CREATION_PENDING"},
+    "registry": {
+      "name": "ЯЯ Реестр",
+      "repository": "Aleksandr-yaros/YaYa",
+      "status": "active"
+    },
+    "payment": {
+      "number": 1,
+      "name": "ЯЯ Оплата",
+      "target_repository": "Aleksandr-yaros/YaYa-Pay",
+      "visibility": "private",
+      "version": "0.1.0",
+      "status": "REGISTERED / REPOSITORY_CREATION_PENDING"
+    },
     "bot_factory": {
       "number": 2,
       "name": "Фабрика ботов ЯЯ",
       "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
       "visibility": "private",
-      "version": "0.3.0",
-      "codename": "Employee Factory OS",
+      "version": "0.4.0",
+      "codename": "Factory Address Protocol",
       "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "passport": "projects/bot-factory/PROJECT.md",
+      "access_card": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md",
       "master_command": "docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md",
       "master_task": "projects/bot-factory/BOT_FACTORY_MASTER_TASK.md",
+      "canonical_intents": [
+        "ДОСТАНЬ",
+        "СТАТУС",
+        "ПРОАНАЛИЗИРУЙ",
+        "СПРОЕКТИРУЙ",
+        "СОЗДАЙ",
+        "ПРОВЕРЬ",
+        "СОХРАНИ",
+        "ВЫПУСТИ",
+        "УЛУЧШИ",
+        "ОСТАНОВИ",
+        "АРХИВИРУЙ"
+      ],
       "production_cycle": "LEXA → ORLIKIN·SPIDER 8/8 → SPEC → SPEC·GUARD → Build → Test → IMPACT → dry-run → confirmation → Commit Boundary → Release → Observability → Improve Desk / Rollback",
       "first_reference_release": "internal command bot for Yaros"
     },
-    "contracts": {"name": "Договоры Ярос", "repository": "Aleksandr-yaros/dogovory", "visibility": "private", "status": "active"}
+    "contracts": {
+      "name": "Договоры Ярос",
+      "repository": "Aleksandr-yaros/dogovory",
+      "visibility": "private",
+      "status": "active"
+    }
+  },
+  "bot_factory_address_protocol": {
+    "syntax": "Яя, Фабрика ботов ЯЯ: <НАМЕРЕНИЕ> <задание>.",
+    "retrieval_commands": [
+      "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
+      "Яя, ЯЯ Реестр: ДОСТАНЬ ОБРАЩЕНИЕ «Фабрика ботов ЯЯ».",
+      "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ."
+    ],
+    "levels": ["natural", "managed", "industrial"],
+    "automatic_upgrade_rule": "Short requests are normalized into intent, object, business result, users, channel, data, rights, integrations, acceptance, C/E, risk, rollback and Commit Boundary.",
+    "source_of_truth": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md"
   },
   "bot_factory_master_rule": {
-    "input": "Treat each request as a production order for an electronic employee",
     "required_frameworks": ["LEXA", "ORLIKIN·SPIDER 8/8", "SPEC", "SPEC·GUARD", "IMPACT", "Salim/SLM", "dry-run", "Commit Boundary", "rollback"],
-    "required_package": ["EMPLOYEE.md", "SYSTEM_PROMPT.md", "POLICY_MATRIX.md", "KNOWLEDGE_SOURCES.md", "INTEGRATIONS.md", "TEST_PLAN.md", "DEPLOYMENT.md", "OBSERVABILITY.md", "VERSION.json", "CHANGELOG.md"],
     "c2_c4_gate": "SPEC·GUARD → IMPACT → dry-run → confirmation → Commit Boundary",
     "silent_writes": "forbidden",
     "source_of_truth": "Aleksandr-yaros/YaYa-Bot-Factory",
-    "temporary_registry_rule": "Only passports, master documents, ADR, links and explicit demos may stay in YaYa until the private repository exists"
+    "temporary_registry_rule": "Only passports, access cards, master documents, ADR, links and explicit demos may stay in YaYa until the private repository exists"
   },
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
-  "salim_profile": {"B": "10/10", "C": "C3; C4 for financial/legal actions", "E": "E4 for approved architecture", "V": "9/10", "delta_M": 2.0, "L": "10/10", "R": "10/10", "T": "9/10", "A": "10/10"},
-  "last_upgrade": {
-    "from": "2.6.0",
-    "to": "2.7.0",
-    "title": "Employee Factory OS",
-    "summary": "Фабрика ботов ЯЯ усилена до производственной системы электронных сотрудников. Введены постоянная мастер-команда, итоговое мастер-ТЗ, ORLIKIN·SPIDER 8/8, обязательный пакет сотрудника, жизненный цикл, release gates, IMPACT, dry-run, наблюдаемость и откат. Версия Фабрики повышена до 0.3.0."
+  "salim_profile": {
+    "B": "10/10",
+    "C": "C3; C4 for financial/legal actions",
+    "E": "E4",
+    "V": "10/10",
+    "delta_M": 2.1,
+    "L": "10/10",
+    "R": "10/10",
+    "T": "9/10",
+    "A": "10/10"
   },
-  "proof_after_write": ["canonical_context", "repository", "path", "version", "commit_sha", "routing_verification"],
-  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaYa-Bot-Factory и перенести паспорт, мастер-команду, мастер-ТЗ и демонстрационные материалы отдельным Commit Boundary."
+  "last_upgrade": {
+    "from": "2.7.0",
+    "to": "2.8.0",
+    "title": "Factory Address Protocol",
+    "summary": "Введён глагольный протокол обращения к Фабрике, три уровня задания, команда ДОСТАНЬ ОБРАЩЕНИЕ, карточка доступа и автоматическое усиление коротких запросов. Версия Фабрики повышена до 0.4.0."
+  },
+  "proof_after_write": ["canonical_context", "intent", "repository", "path", "version", "commit_sha", "routing_verification"],
+  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaYa-Bot-Factory и перенести паспорт, карточку обращения, мастер-команду, мастер-ТЗ и демонстрационные материалы отдельным Commit Boundary."
 }
