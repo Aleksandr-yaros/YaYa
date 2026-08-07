@@ -1,6 +1,6 @@
 # ЯЯ Реестр
 
-Текущая версия: **v2.9.0 Draft-to-Canon Boundary**
+Текущая версия: **v3.0.0 Work Memory Router**
 
 `Aleksandr-yaros/YaYa` — управляющий реестр экосистемы ∞ЯЯ.
 
@@ -26,7 +26,8 @@
 - `ЯЯ Оплата` → целевой приватный `Aleksandr-yaros/YaYa-Pay`;
 - `Фабрика ботов ЯЯ · черновик` → приватный `Aleksandr-yaros/logos-pandre` (`LOGOS·PANDRE`);
 - `Фабрика ботов ЯЯ · чистовик` → приватный `Aleksandr-yaros/logos-fabric` (`LOGOS·FABRIC`);
-- `Договоры Ярос` → приватный `Aleksandr-yaros/dogovory`.
+- `Договоры Ярос` → приватный `Aleksandr-yaros/dogovory`;
+- `YaKassa·WORKSPACE` → целевой приватный `Aleksandr-yaros/YaKassa-Workspace`.
 
 Пример:
 
@@ -53,6 +54,7 @@
 - `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` — аудит недостатков и тесты маршрутизации;
 - `docs/YAYA_REPOSITORY_ROUTER.md` — действующий маршрутизатор;
 - `docs/COMMANDS.md` — команды агента;
+- `docs/YAKASSA_WORKSPACE_PROTOCOL.md` — протокол рабочей памяти YaKassa;
 - `CHANGELOG.md` — история апгрейдов.
 
 ## Правило сохранения
@@ -69,7 +71,7 @@
 
 ## Текущее ограничение
 
-`YaYa-Pay`, `logos-pandre` и `logos-fabric` зарегистрированы, но ещё не созданы физически. До их создания в `YaYa` допускаются только паспорта, каноны, ADR и ссылки. Рабочие материалы Фабрики после создания идут в `LOGOS·PANDRE`; чистовой канон переносится в `LOGOS·FABRIC` только через проверку и Commit Boundary.
+`YaYa-Pay`, `logos-pandre`, `logos-fabric` и `YaKassa-Workspace` зарегистрированы, но ещё не созданы физически. До их создания в `YaYa` допускаются только паспорта, каноны, ADR и ссылки. Рабочие материалы Фабрики после создания идут в `LOGOS·PANDRE`; чистовой канон переносится в `LOGOS·FABRIC` только через проверку и Commit Boundary.
 
 ## Контур Фабрики ботов
 
@@ -77,3 +79,18 @@
 
 - `LOGOS·PANDRE` — рабочий приватный черновик; сюда направляется всё, что относится к разработке Фабрики ботов.
 - `LOGOS·FABRIC` — чистовой приватный источник истины; молчаливые записи запрещены.
+
+## Рабочая память YaKassa
+
+Каноническое написание продукта: `YaKassa`.
+
+Целевой private-репозиторий: `Aleksandr-yaros/YaKassa-Workspace`.
+
+```text
+Привет, Алибаба, покажи рабочие архивы.
+Привет, Алибаба, YaKassa: ПОКАЖИ АРХИВ.
+Привет, Алибаба, достань информацию по YaKassa: <тема>.
+Привет, Алибаба, сохрани в YaKassa: <материал>.
+```
+
+Подробный контракт: `docs/YAKASSA_WORKSPACE_PROTOCOL.md`.
