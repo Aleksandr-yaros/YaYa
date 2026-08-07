@@ -15,7 +15,7 @@
 | YAYA-BOT-FACTORY-COMMAND | Постоянная мастер-команда v2.0.0 | approved | `docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md` |
 | YAYA-BOT-FACTORY-TASK | Итоговое мастер-ТЗ | approved | `projects/bot-factory/BOT_FACTORY_MASTER_TASK.md` |
 | YAROS-CONTRACTS | Договоры компании «Ярос» | active | private `Aleksandr-yaros/dogovory` |
-| YAKASSA-WORKSPACE | YaKassa·WORKSPACE v1.0.0 — рабочая память | registered / blocked | целевой private `Aleksandr-yaros/YaKassa-Workspace` |
+| YAKASSA-WORKSPACE | YaKassa·WORKSPACE v1.0.0 — рабочая память | active | private `Aleksandr-yaros/YaKassa-Workspace` |
 | YAKASSA-WORKSPACE-PROTOCOL | Команды, структура, версии и извлечение YaKassa | approved | `docs/YAKASSA_WORKSPACE_PROTOCOL.md` |
 
 ## Каноническое обращение к Фабрике
