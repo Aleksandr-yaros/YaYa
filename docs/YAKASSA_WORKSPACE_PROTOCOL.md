@@ -1,7 +1,7 @@
 # YaKassa·WORKSPACE — протокол рабочей памяти
 
 Версия: **1.0.0**  
-Статус: **approved / repository creation pending**  
+Статус: **active**  
 Целевой источник истины: private `Aleksandr-yaros/YaKassa-Workspace`
 
 ## Назначение
