@@ -1,10 +1,10 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.9.0",
-  "codename": "Draft-to-Canon Boundary",
+  "version": "3.0.0",
+  "codename": "Work Memory Router",
   "status": "approved",
-  "saved_at": "2026-08-07T00:00:00Z",
+  "saved_at": "2026-08-07T21:45:00Z",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
@@ -14,7 +14,9 @@
     "bot_factory_activation": "Яя, Фабрика ботов ЯЯ: <НАМЕРЕНИЕ> <задание>.",
     "bot_factory_retrieval": "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
     "bot_factory_short_retrieval": "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ.",
-    "is_repository": false
+    "is_repository": false,
+    "alibaba_workspace_activation": "Привет, Алибаба, <рабочий контур>: <НАМЕРЕНИЕ> <задание>.",
+    "alibaba_workspace_inventory": "Привет, Алибаба, покажи рабочие архивы."
   },
   "canonical_contexts": {
     "registry": {
@@ -67,6 +69,18 @@
       "repository": "Aleksandr-yaros/dogovory",
       "visibility": "private",
       "status": "active"
+    },
+    "yakassa_workspace": {
+      "number": 3,
+      "name": "YaKassa·WORKSPACE",
+      "product_spelling": "YaKassa",
+      "target_repository": "Aleksandr-yaros/YaKassa-Workspace",
+      "visibility": "private",
+      "version": "1.0.0",
+      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
+      "purpose": "Приватная рабочая память YaKassa для версионируемых материалов и быстрого извлечения.",
+      "protocol": "docs/YAKASSA_WORKSPACE_PROTOCOL.md"
     }
   },
   "bot_factory_address_protocol": {
@@ -116,10 +130,10 @@
     "A": "10/10"
   },
   "last_upgrade": {
-    "from": "2.8.0",
-    "to": "2.9.0",
-    "title": "Draft-to-Canon Boundary",
-    "summary": "Закреплены два приватных контура Фабрики ботов: LOGOS·PANDRE как рабочий черновик и LOGOS·FABRIC как чистовой канон; перенос разрешён только через проверку и Commit Boundary. Версия Фабрики повышена до 0.5.0."
+    "from": "2.9.0",
+    "to": "3.0.0",
+    "title": "Work Memory Router",
+    "summary": "Создан постоянный протокол приватных рабочих архивов и зарегистрирован контур YaKassa·WORKSPACE с командами показа, поиска, извлечения и версионирования."
   },
   "proof_after_write": [
     "canonical_context",
@@ -130,5 +144,12 @@
     "commit_sha",
     "routing_verification"
   ],
-  "next_step": "Создать private-репозиторий Aleksandr-yaros/logos-pandre, затем private-репозиторий Aleksandr-yaros/logos-fabric и выполнить первичный перенос через Commit Boundary."
+  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaKassa-Workspace и инициализировать его структуру v1.0.0.",
+  "work_memory_router": {
+    "activation": "Привет, Алибаба",
+    "behavior": "Показать доступные рабочие контуры; по команде ДОСТАНЬ вернуть найденный материал и источник; по команде СОХРАНИ выполнить явный Commit Boundary и записать с версией.",
+    "silent_writes": "forbidden",
+    "privacy_rule": "Содержимое рабочих материалов, клиентские данные и коммерческие условия не публикуются в публичном реестре.",
+    "source_of_truth": "docs/YAKASSA_WORKSPACE_PROTOCOL.md"
+  }
 }
