@@ -1,10 +1,10 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "2.8.0",
-  "codename": "Factory Address Protocol",
+  "version": "2.9.0",
+  "codename": "Draft-to-Canon Boundary",
   "status": "approved",
-  "saved_at": "2026-08-06T21:06:00+06:00",
+  "saved_at": "2026-08-07T00:00:00Z",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
@@ -35,9 +35,9 @@
       "name": "Фабрика ботов ЯЯ",
       "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
       "visibility": "private",
-      "version": "0.4.0",
-      "codename": "Factory Address Protocol",
-      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "version": "0.5.0",
+      "codename": "Draft-to-Canon Boundary",
+      "status": "REGISTERED / DRAFT_AND_CANON_REPOSITORIES_PENDING",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "passport": "projects/bot-factory/PROJECT.md",
       "access_card": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md",
@@ -57,7 +57,10 @@
         "АРХИВИРУЙ"
       ],
       "production_cycle": "LEXA → ORLIKIN·SPIDER 8/8 → SPEC → SPEC·GUARD → Build → Test → IMPACT → dry-run → confirmation → Commit Boundary → Release → Observability → Improve Desk / Rollback",
-      "first_reference_release": "internal command bot for Yaros"
+      "first_reference_release": "internal command bot for Yaros",
+      "draft_repository": "Aleksandr-yaros/logos-pandre",
+      "canonical_repository": "Aleksandr-yaros/logos-fabric",
+      "repository_flow": "LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"
     },
     "contracts": {
       "name": "Договоры Ярос",
@@ -73,16 +76,32 @@
       "Яя, ЯЯ Реестр: ДОСТАНЬ ОБРАЩЕНИЕ «Фабрика ботов ЯЯ».",
       "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ."
     ],
-    "levels": ["natural", "managed", "industrial"],
+    "levels": [
+      "natural",
+      "managed",
+      "industrial"
+    ],
     "automatic_upgrade_rule": "Short requests are normalized into intent, object, business result, users, channel, data, rights, integrations, acceptance, C/E, risk, rollback and Commit Boundary.",
     "source_of_truth": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md"
   },
   "bot_factory_master_rule": {
-    "required_frameworks": ["LEXA", "ORLIKIN·SPIDER 8/8", "SPEC", "SPEC·GUARD", "IMPACT", "Salim/SLM", "dry-run", "Commit Boundary", "rollback"],
+    "required_frameworks": [
+      "LEXA",
+      "ORLIKIN·SPIDER 8/8",
+      "SPEC",
+      "SPEC·GUARD",
+      "IMPACT",
+      "Salim/SLM",
+      "dry-run",
+      "Commit Boundary",
+      "rollback"
+    ],
     "c2_c4_gate": "SPEC·GUARD → IMPACT → dry-run → confirmation → Commit Boundary",
     "silent_writes": "forbidden",
-    "source_of_truth": "Aleksandr-yaros/YaYa-Bot-Factory",
-    "temporary_registry_rule": "Only passports, access cards, master documents, ADR, links and explicit demos may stay in YaYa until the private repository exists"
+    "source_of_truth": "Aleksandr-yaros/logos-fabric",
+    "temporary_registry_rule": "Until the private repositories exist, YaYa stores only passports, access cards, master documents, ADR, links and explicit demos",
+    "working_source": "Aleksandr-yaros/logos-pandre",
+    "repository_flow": "LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"
   },
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
   "salim_profile": {
@@ -97,11 +116,19 @@
     "A": "10/10"
   },
   "last_upgrade": {
-    "from": "2.7.0",
-    "to": "2.8.0",
-    "title": "Factory Address Protocol",
-    "summary": "Введён глагольный протокол обращения к Фабрике, три уровня задания, команда ДОСТАНЬ ОБРАЩЕНИЕ, карточка доступа и автоматическое усиление коротких запросов. Версия Фабрики повышена до 0.4.0."
+    "from": "2.8.0",
+    "to": "2.9.0",
+    "title": "Draft-to-Canon Boundary",
+    "summary": "Закреплены два приватных контура Фабрики ботов: LOGOS·PANDRE как рабочий черновик и LOGOS·FABRIC как чистовой канон; перенос разрешён только через проверку и Commit Boundary. Версия Фабрики повышена до 0.5.0."
   },
-  "proof_after_write": ["canonical_context", "intent", "repository", "path", "version", "commit_sha", "routing_verification"],
-  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaYa-Bot-Factory и перенести паспорт, карточку обращения, мастер-команду, мастер-ТЗ и демонстрационные материалы отдельным Commit Boundary."
+  "proof_after_write": [
+    "canonical_context",
+    "intent",
+    "repository",
+    "path",
+    "version",
+    "commit_sha",
+    "routing_verification"
+  ],
+  "next_step": "Создать private-репозиторий Aleksandr-yaros/logos-pandre, затем private-репозиторий Aleksandr-yaros/logos-fabric и выполнить первичный перенос через Commit Boundary."
 }
