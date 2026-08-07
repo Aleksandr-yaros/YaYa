@@ -1,6 +1,6 @@
 # Индекс знаний ЯЯ Реестра
 
-Текущая версия системы: **v2.8.0 Factory Address Protocol**
+Текущая версия системы: **v2.9.0 Draft-to-Canon Boundary**
 
 | ID | Раздел | Статус | Источник истины |
 |---|---|---|---|
@@ -9,7 +9,8 @@
 | YAYA-ROUTING-INTEGRITY | Аудит маршрутизации | approved | `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` |
 | YAYA-DUAL-TARGET | Раздельная работа с базами №1 и №2 | approved | `docs/YAYA_DUAL_TARGET_COMMAND.md` |
 | YAYA-PAY | ЯЯ Оплата | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Pay` |
-| YAYA-BOT-FACTORY | Фабрика ботов ЯЯ v0.4.0 | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Bot-Factory` |
+| YAYA-BOT-FACTORY-DRAFT | LOGOS·PANDRE — рабочий черновик Фабрики v0.5.0 | registered / blocked | целевой private `Aleksandr-yaros/logos-pandre` |
+| YAYA-BOT-FACTORY-CANON | LOGOS·FABRIC — чистовой канон Фабрики v0.5.0 | registered / blocked | целевой private `Aleksandr-yaros/logos-fabric` |
 | YAYA-BOT-FACTORY-ACCESS | Карточка обращения и команда извлечения | approved | `docs/YAYA_BOT_FACTORY_ACCESS_CARD.md` |
 | YAYA-BOT-FACTORY-COMMAND | Постоянная мастер-команда v2.0.0 | approved | `docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md` |
 | YAYA-BOT-FACTORY-TASK | Итоговое мастер-ТЗ | approved | `projects/bot-factory/BOT_FACTORY_MASTER_TASK.md` |
@@ -51,4 +52,4 @@
 
 ## Ограничение
 
-Private-репозиторий `Aleksandr-yaros/YaYa-Bot-Factory` ещё не создан. Рабочие оригиналы блокируются статусом `BLOCKED_BY_REPOSITORY`; в `YaYa` допускаются только паспорт, карточка обращения, мастер-документы, ADR, ссылки и явные демонстрационные материалы.
+Private-репозитории `Aleksandr-yaros/logos-pandre` и `Aleksandr-yaros/logos-fabric` ещё не созданы. До их создания рабочие оригиналы блокируются статусом `BLOCKED_BY_REPOSITORY`. После создания действует маршрут `LOGOS·PANDRE → проверка → Commit Boundary → LOGOS·FABRIC`.
