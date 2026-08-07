@@ -1,10 +1,10 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "3.0.0",
-  "codename": "Work Memory Router",
+  "version": "4.0.0",
+  "codename": "Alibaba Universal Router",
   "status": "approved",
-  "saved_at": "2026-08-07T21:45:00Z",
+  "saved_at": "2026-08-07T22:20:00Z",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
@@ -15,8 +15,10 @@
     "bot_factory_retrieval": "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
     "bot_factory_short_retrieval": "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ.",
     "is_repository": false,
-    "alibaba_workspace_activation": "Привет, Алибаба, <рабочий контур>: <НАМЕРЕНИЕ> <задание>.",
-    "alibaba_workspace_inventory": "Привет, Алибаба, покажи рабочие архивы."
+    "alibaba_workspace_activation": "Алибаба, <действие> <объект> [контур] [условия].",
+    "alibaba_workspace_inventory": "Алибаба, покажи мои рабочие архивы.",
+    "alibaba_teach": "Алибаба, научи меня правильно обратиться: <цель>.",
+    "alibaba_ground": "Алибаба, приземли: <идея или решение>."
   },
   "canonical_contexts": {
     "registry": {
@@ -76,7 +78,7 @@
       "product_spelling": "YaKassa",
       "target_repository": "Aleksandr-yaros/YaKassa-Workspace",
       "visibility": "private",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "active",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "purpose": "Приватная рабочая память YaKassa для версионируемых материалов и быстрого извлечения.",
@@ -132,10 +134,10 @@
     "A": "10/10"
   },
   "last_upgrade": {
-    "from": "2.9.0",
-    "to": "3.0.0",
-    "title": "Work Memory Router",
-    "summary": "Создан постоянный протокол приватных рабочих архивов и зарегистрирован контур YaKassa·WORKSPACE с командами показа, поиска, извлечения и версионирования."
+    "from": "3.0.0",
+    "to": "4.0.0",
+    "title": "Alibaba Universal Router",
+    "summary": "ALIBABA·ROUTER v2.0.0 превращает естественную речь в точную маршрутизацию, поддерживает рабочую память, обучение запросам, приземление идей, версии, приватность и один следующий шаг."
   },
   "proof_after_write": [
     "canonical_context",
@@ -146,12 +148,77 @@
     "commit_sha",
     "routing_verification"
   ],
-  "next_step": "Использовать команду «Привет, Алибаба, YaKassa: ПОКАЖИ АРХИВ» и сохранять новые материалы через Commit Boundary.",
+  "next_step": "Использовать короткую команду «Алибаба, покажи мои рабочие архивы» или «Алибаба, приземли: <идея>».",
   "work_memory_router": {
     "activation": "Привет, Алибаба",
     "behavior": "Показать доступные рабочие контуры; по команде ДОСТАНЬ вернуть найденный материал и источник; по команде СОХРАНИ выполнить явный Commit Boundary и записать с версией.",
     "silent_writes": "forbidden",
     "privacy_rule": "Содержимое рабочих материалов, клиентские данные и коммерческие условия не публикуются в публичном реестре.",
     "source_of_truth": "docs/YAKASSA_WORKSPACE_PROTOCOL.md"
+  },
+  "alibaba_router": {
+    "version": "2.0.0",
+    "name": "ALIBABA·ROUTER",
+    "source_of_truth": "docs/ALIBABA_ROUTER_PROTOCOL.md",
+    "default_rule": "Одной естественной фразы достаточно. Алибаба сам определяет действие, объект, контур, репозиторий, категорию, версию, чувствительность и Commit Boundary.",
+    "clarification_limit": 1,
+    "clarification_gate": "Задать один вопрос только если неоднозначность меняет репозиторий, приватность, получателя, публикацию, удаление или C2–C4 действие.",
+    "actions": [
+      "ПОКАЖИ",
+      "СОХРАНИ",
+      "ДОСТАНЬ",
+      "НАЙДИ",
+      "УЛУЧШИ",
+      "ОБНОВИ",
+      "СРАВНИ",
+      "СОЗДАЙ",
+      "АРХИВИРУЙ",
+      "СТАТУС",
+      "ГДЕ Я",
+      "НАУЧИ",
+      "ПРИЗЕМЛИ"
+    ],
+    "modifiers": [
+      "БЕЗ ЗАПИСИ",
+      "ЧЕРНОВИК",
+      "ЧИСТОВИК",
+      "ПОСЛЕДНЕЕ",
+      "НА 10",
+      "СРОЧНО",
+      "ДЛЯ КЛИЕНТА",
+      "ПОКАЖИ ИСТОЧНИК"
+    ],
+    "routing_order": [
+      "explicit repository or context",
+      "product/project",
+      "material type",
+      "current conversation",
+      "safe inbox or one clarification"
+    ],
+    "response_contract": [
+      "Что понял",
+      "Куда направил",
+      "Что сделал или предлагаю",
+      "Версия и источник",
+      "Риск или блокировка",
+      "Один следующий шаг"
+    ],
+    "teach_contract": [
+      "Исправленная команда",
+      "Почему она лучше",
+      "Короткий вариант",
+      "Точный вариант",
+      "Один лучший вариант"
+    ],
+    "ground_contract": [
+      "Факт",
+      "Предположение",
+      "Чего не хватает",
+      "C/E",
+      "Практический эффект",
+      "Риск",
+      "Один следующий шаг"
+    ],
+    "no_connector_behavior": "Не выдумывать доступ. Показать точный repository/path и попросить включить GitHub plugin in Work/Codex."
   }
 }
