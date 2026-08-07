@@ -1,6 +1,6 @@
 # Индекс знаний ЯЯ Реестра
 
-Текущая версия системы: **v2.9.0 Draft-to-Canon Boundary**
+Текущая версия системы: **v3.0.0 Work Memory Router**
 
 | ID | Раздел | Статус | Источник истины |
 |---|---|---|---|
@@ -15,6 +15,8 @@
 | YAYA-BOT-FACTORY-COMMAND | Постоянная мастер-команда v2.0.0 | approved | `docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md` |
 | YAYA-BOT-FACTORY-TASK | Итоговое мастер-ТЗ | approved | `projects/bot-factory/BOT_FACTORY_MASTER_TASK.md` |
 | YAROS-CONTRACTS | Договоры компании «Ярос» | active | private `Aleksandr-yaros/dogovory` |
+| YAKASSA-WORKSPACE | YaKassa·WORKSPACE v1.0.0 — рабочая память | registered / blocked | целевой private `Aleksandr-yaros/YaKassa-Workspace` |
+| YAKASSA-WORKSPACE-PROTOCOL | Команды, структура, версии и извлечение YaKassa | approved | `docs/YAKASSA_WORKSPACE_PROTOCOL.md` |
 
 ## Каноническое обращение к Фабрике
 
@@ -53,3 +55,12 @@
 ## Ограничение
 
 Private-репозитории `Aleksandr-yaros/logos-pandre` и `Aleksandr-yaros/logos-fabric` ещё не созданы. До их создания рабочие оригиналы блокируются статусом `BLOCKED_BY_REPOSITORY`. После создания действует маршрут `LOGOS·PANDRE → проверка → Commit Boundary → LOGOS·FABRIC`.
+
+## Рабочий архив YaKassa
+
+```text
+Привет, Алибаба, YaKassa: ПОКАЖИ АРХИВ.
+Привет, Алибаба, достань информацию по YaKassa: <тема>.
+```
+
+Маршрут: `запрос → MANIFEST/INDEX → категория → версия материала → источник`.
