@@ -1,10 +1,11 @@
 # Индекс знаний ЯЯ Реестра
 
-Текущая версия системы: **v3.0.0 Work Memory Router**
+Текущая версия системы: **v4.0.0 Alibaba Universal Router**
 
 | ID | Раздел | Статус | Источник истины |
 |---|---|---|---|
 | YAYA-REGISTRY | ЯЯ Реестр | approved | `Aleksandr-yaros/YaYa` |
+| ALIBABA-ROUTER | ALIBABA·ROUTER v2.0.0 | approved | `docs/ALIBABA_ROUTER_PROTOCOL.md` |
 | YAYA-NAMESPACE | Разделение обращения и проектов | approved | `docs/YAYA_NAMESPACE_CANON.md` |
 | YAYA-ROUTING-INTEGRITY | Аудит маршрутизации | approved | `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` |
 | YAYA-DUAL-TARGET | Раздельная работа с базами №1 и №2 | approved | `docs/YAYA_DUAL_TARGET_COMMAND.md` |
@@ -64,3 +65,12 @@ Private-репозитории `Aleksandr-yaros/logos-pandre` и `Aleksandr-yaro
 ```
 
 Маршрут: `запрос → MANIFEST/INDEX → категория → версия материала → источник`.
+
+
+## Универсальная команда
+
+```text
+Алибаба, <действие> <объект> [контур] [условия].
+```
+
+Маршрут: `естественная речь → действие → объект → контур → repository/category → privacy/version → Commit Boundary → proof`.
