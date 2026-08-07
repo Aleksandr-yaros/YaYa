@@ -77,10 +77,12 @@
       "target_repository": "Aleksandr-yaros/YaKassa-Workspace",
       "visibility": "private",
       "version": "1.0.0",
-      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "status": "active",
       "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
       "purpose": "Приватная рабочая память YaKassa для версионируемых материалов и быстрого извлечения.",
-      "protocol": "docs/YAKASSA_WORKSPACE_PROTOCOL.md"
+      "protocol": "docs/YAKASSA_WORKSPACE_PROTOCOL.md",
+      "current_commit": "b47071658dc5e1c798737cd8a76356085c97d372",
+      "material_count": 1
     }
   },
   "bot_factory_address_protocol": {
@@ -144,7 +146,7 @@
     "commit_sha",
     "routing_verification"
   ],
-  "next_step": "Создать private-репозиторий Aleksandr-yaros/YaKassa-Workspace и инициализировать его структуру v1.0.0.",
+  "next_step": "Использовать команду «Привет, Алибаба, YaKassa: ПОКАЖИ АРХИВ» и сохранять новые материалы через Commit Boundary.",
   "work_memory_router": {
     "activation": "Привет, Алибаба",
     "behavior": "Показать доступные рабочие контуры; по команде ДОСТАНЬ вернуть найденный материал и источник; по команде СОХРАНИ выполнить явный Commit Boundary и записать с версией.",
