@@ -1,16 +1,15 @@
 # Индекс знаний ЯЯ Реестра
 
-Текущая версия системы: **v4.1.0 Repository Steward+**
+Текущая версия системы: **v4.2.0 Stepwise Repository Memory**
 
 | ID | Раздел | Статус | Источник истины |
 |---|---|---|---|
 | YAYA-REGISTRY | ЯЯ Реестр | approved | `Aleksandr-yaros/YaYa` |
-| ALIBABA-ROUTER | ALIBABA·ROUTER v2.1.0 | approved | `docs/ALIBABA_ROUTER_PROTOCOL.md` |
+| ALIBABA-ROUTER | ALIBABA·ROUTER v2.2.0 | approved | `docs/ALIBABA_ROUTER_PROTOCOL.md` |
+| GITHUB-OPERATING-PROCEDURE | Пошаговая работа с GitHub | approved | `docs/GITHUB_OPERATING_PROCEDURE.md` |
+| ROUTING-TEST-MATRIX | Тесты маршрутизации | approved | `docs/ROUTING_TEST_MATRIX.md` |
 | REPOSITORY-CATALOG | Каталог проектов и репозиториев | approved | `docs/REPOSITORY_CATALOG.md` |
 | MEDIA-STANDARD | Хранение фото, рисунков, схем и сканов | approved | `docs/MEDIA_STORAGE_STANDARD.md` |
-| YAYA-NAMESPACE | Разделение обращения и проектов | approved | `docs/YAYA_NAMESPACE_CANON.md` |
-| YAYA-ROUTING-INTEGRITY | Аудит маршрутизации | approved | `docs/YAYA_ROUTING_INTEGRITY_AUDIT.md` |
-| YAYA-DUAL-TARGET | Раздельная работа с базами | approved | `docs/YAYA_DUAL_TARGET_COMMAND.md` |
 | YAYA-PAY | ЯЯ Оплата | registered / blocked | целевой private `Aleksandr-yaros/YaYa-Pay` |
 | YAYA-BOT-FACTORY-DRAFT | LOGOS·PANDRE — рабочий черновик | repository exists / bootstrap pending | private `Aleksandr-yaros/logos-pandre` |
 | YAYA-BOT-FACTORY-CANON | LOGOS·FABRIC — чистовой канон | repository exists / bootstrap pending | private `Aleksandr-yaros/logos-fabric` |
@@ -22,25 +21,21 @@
 
 ```text
 А <действие> <объект>.
-```
-
-Команды записи:
-
-```text
 А запомни <материал>.
 А запиши <материал>.
 ```
 
-Команды извлечения:
+`запомни` = постоянная версионируемая память проекта.
 
-```text
-А достань <материал>.
-А покажи последнее по <проекту>.
-```
+`запиши` = конкретный артефакт проекта.
+
+## CURRENT_PROJECT
+
+Последний однозначно определённый проект становится `CURRENT_PROJECT` для коротких ссылок `там`, `туда`, `сюда`, `здесь`, `в этот проект`.
 
 ## Маршрутизация
 
-`естественная речь → действие → объект → проект → repository/category → privacy/version → C/E при необходимости → Commit Boundary → proof`
+`намерение → объект → проект/CURRENT_PROJECT → repository → privacy → category/path → version → C/E → Commit Boundary → write/read → verification → proof`
 
 ## Фабрика ботов
 
@@ -50,7 +45,7 @@ LOGOS·PANDRE → LEXA → ORLIKIN·SPIDER → SPEC → SPEC·GUARD → Test →
 
 ## Медиа
 
-Фото, рисунки, сканы, схемы и скриншоты хранятся в репозитории соответствующего проекта. Базовый стандарт: `docs/MEDIA_STORAGE_STANDARD.md`.
+Фото, рисунки, сканы, схемы и скриншоты хранятся в репозитории соответствующего проекта. Стандарт: `docs/MEDIA_STORAGE_STANDARD.md`.
 
 ## Quarantine
 
