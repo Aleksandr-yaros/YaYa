@@ -1,125 +1,98 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "4.0.0",
-  "codename": "Alibaba Universal Router",
+  "version": "4.1.0",
+  "codename": "Repository Steward+",
   "status": "approved",
-  "saved_at": "2026-08-07T22:20:00Z",
+  "saved_at": "2026-08-08T04:35:00Z",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
   "agent_role": {
     "name": "Яя",
+    "short_alias": "А",
     "canonical_activation": "Яя, <канонический контур>: <НАМЕРЕНИЕ> <задание>.",
-    "bot_factory_activation": "Яя, Фабрика ботов ЯЯ: <НАМЕРЕНИЕ> <задание>.",
-    "bot_factory_retrieval": "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
-    "bot_factory_short_retrieval": "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ.",
-    "is_repository": false,
-    "alibaba_workspace_activation": "Алибаба, <действие> <объект> [контур] [условия].",
-    "alibaba_workspace_inventory": "Алибаба, покажи мои рабочие архивы.",
-    "alibaba_teach": "Алибаба, научи меня правильно обратиться: <цель>.",
-    "alibaba_ground": "Алибаба, приземли: <идея или решение>."
+    "alibaba_activation": "Алибаба, <действие> <объект> [контур] [условия].",
+    "short_activation": "А <действие> <объект>.",
+    "save_phrases": ["А запомни <материал>.", "А запиши <материал>."],
+    "is_repository": false
   },
+  "repository_catalog": "docs/REPOSITORY_CATALOG.md",
+  "media_standard": "docs/MEDIA_STORAGE_STANDARD.md",
   "canonical_contexts": {
     "registry": {
       "name": "ЯЯ Реестр",
       "repository": "Aleksandr-yaros/YaYa",
+      "visibility": "public",
       "status": "active"
-    },
-    "payment": {
-      "number": 1,
-      "name": "ЯЯ Оплата",
-      "target_repository": "Aleksandr-yaros/YaYa-Pay",
-      "visibility": "private",
-      "version": "0.1.0",
-      "status": "REGISTERED / REPOSITORY_CREATION_PENDING"
-    },
-    "bot_factory": {
-      "number": 2,
-      "name": "Фабрика ботов ЯЯ",
-      "target_repository": "Aleksandr-yaros/YaYa-Bot-Factory",
-      "visibility": "private",
-      "version": "0.5.0",
-      "codename": "Draft-to-Canon Boundary",
-      "status": "REGISTERED / DRAFT_AND_CANON_REPOSITORIES_PENDING",
-      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
-      "passport": "projects/bot-factory/PROJECT.md",
-      "access_card": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md",
-      "master_command": "docs/YAYA_BOT_FACTORY_MASTER_COMMAND.md",
-      "master_task": "projects/bot-factory/BOT_FACTORY_MASTER_TASK.md",
-      "canonical_intents": [
-        "ДОСТАНЬ",
-        "СТАТУС",
-        "ПРОАНАЛИЗИРУЙ",
-        "СПРОЕКТИРУЙ",
-        "СОЗДАЙ",
-        "ПРОВЕРЬ",
-        "СОХРАНИ",
-        "ВЫПУСТИ",
-        "УЛУЧШИ",
-        "ОСТАНОВИ",
-        "АРХИВИРУЙ"
-      ],
-      "production_cycle": "LEXA → ORLIKIN·SPIDER 8/8 → SPEC → SPEC·GUARD → Build → Test → IMPACT → dry-run → confirmation → Commit Boundary → Release → Observability → Improve Desk / Rollback",
-      "first_reference_release": "internal command bot for Yaros",
-      "draft_repository": "Aleksandr-yaros/logos-pandre",
-      "canonical_repository": "Aleksandr-yaros/logos-fabric",
-      "repository_flow": "LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"
     },
     "contracts": {
       "name": "Договоры Ярос",
       "repository": "Aleksandr-yaros/dogovory",
       "visibility": "private",
-      "status": "active"
+      "status": "repository_exists_bootstrap_pending",
+      "keywords": ["договор", "акт", "допсоглашение", "юридический оригинал", "скан договора"]
+    },
+    "bot_factory": {
+      "name": "Фабрика ботов ЯЯ",
+      "version": "0.5.0",
+      "draft_repository": "Aleksandr-yaros/logos-pandre",
+      "canonical_repository": "Aleksandr-yaros/logos-fabric",
+      "visibility": "private",
+      "status": "repositories_exist_bootstrap_pending",
+      "repository_flow": "LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC",
+      "keywords": ["фабрика ботов", "электронный сотрудник", "бот", "промпт", "роль", "SPEC", "LEXA", "ORLIKIN", "SPIDER"]
     },
     "yakassa_workspace": {
-      "number": 3,
       "name": "YaKassa·WORKSPACE",
-      "product_spelling": "YaKassa",
-      "target_repository": "Aleksandr-yaros/YaKassa-Workspace",
+      "repository": "Aleksandr-yaros/YaKassa-Workspace",
       "visibility": "private",
       "version": "1.1.0",
       "status": "active",
-      "missing_repository_behavior": "BLOCKED_BY_REPOSITORY",
-      "purpose": "Приватная рабочая память YaKassa для версионируемых материалов и быстрого извлечения.",
-      "protocol": "docs/YAKASSA_WORKSPACE_PROTOCOL.md",
-      "current_commit": "b47071658dc5e1c798737cd8a76356085c97d372",
-      "material_count": 1
+      "keywords": ["YaKassa", "Якасса", "КП YaKassa"]
+    },
+    "callcenter": {
+      "name": "CallCenter",
+      "repository": "Aleksandr-yaros/CallCenter",
+      "visibility": "public",
+      "status": "separate_project_privacy_review_required",
+      "keywords": ["CallCenter", "call center", "колл-центр", "контакт-центр"]
+    },
+    "payment": {
+      "name": "ЯЯ Оплата",
+      "target_repository": "Aleksandr-yaros/YaYa-Pay",
+      "visibility": "private",
+      "version": "0.1.0",
+      "status": "REGISTERED / REPOSITORY_CREATION_PENDING",
+      "keywords": ["ЯЯ Оплата", "QR", "ePOS", "платёж", "возврат", "чек", "баллы ЯЯ"]
     }
   },
-  "bot_factory_address_protocol": {
-    "syntax": "Яя, Фабрика ботов ЯЯ: <НАМЕРЕНИЕ> <задание>.",
-    "retrieval_commands": [
-      "Яя, Фабрика ботов ЯЯ: ДОСТАНЬ ОБРАЩЕНИЕ.",
-      "Яя, ЯЯ Реестр: ДОСТАНЬ ОБРАЩЕНИЕ «Фабрика ботов ЯЯ».",
-      "Яя, база номер два: ДОСТАНЬ ОБРАЩЕНИЕ."
-    ],
-    "levels": [
-      "natural",
-      "managed",
-      "industrial"
-    ],
-    "automatic_upgrade_rule": "Short requests are normalized into intent, object, business result, users, channel, data, rights, integrations, acceptance, C/E, risk, rollback and Commit Boundary.",
-    "source_of_truth": "docs/YAYA_BOT_FACTORY_ACCESS_CARD.md"
+  "quarantine_repositories": [
+    "Aleksandr-yaros/Dogovora",
+    "Aleksandr-yaros/Pesochnica",
+    "Aleksandr-yaros/-gpt",
+    "Aleksandr-yaros/-1",
+    "Aleksandr-yaros/-",
+    "Aleksandr-yaros/-2"
+  ],
+  "routing_rules": {
+    "one_original_one_source": true,
+    "project_first": true,
+    "public_never_beats_private_on_name_match": true,
+    "generic_document_is_not_legal_keyword": true,
+    "max_clarifying_questions": 1,
+    "silent_writes": "forbidden"
   },
-  "bot_factory_master_rule": {
-    "required_frameworks": [
-      "LEXA",
-      "ORLIKIN·SPIDER 8/8",
-      "SPEC",
-      "SPEC·GUARD",
-      "IMPACT",
-      "Salim/SLM",
-      "dry-run",
-      "Commit Boundary",
-      "rollback"
+  "media": {
+    "folders": [
+      "assets/images/source/",
+      "assets/images/edited/",
+      "assets/images/diagrams/",
+      "assets/images/screenshots/",
+      "assets/images/scans/"
     ],
-    "c2_c4_gate": "SPEC·GUARD → IMPACT → dry-run → confirmation → Commit Boundary",
-    "silent_writes": "forbidden",
-    "source_of_truth": "Aleksandr-yaros/logos-fabric",
-    "temporary_registry_rule": "Until the private repositories exist, YaYa stores only passports, access cards, master documents, ADR, links and explicit demos",
-    "working_source": "Aleksandr-yaros/logos-pandre",
-    "repository_flow": "LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"
+    "legal_repository": "Aleksandr-yaros/dogovory",
+    "large_binary_rule": "Use Git LFS or dedicated archive/object storage for large raw collections; keep manifest/reference in Git."
   },
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
   "salim_profile": {
@@ -133,92 +106,28 @@
     "T": "9/10",
     "A": "10/10"
   },
+  "alibaba_router": {
+    "version": "2.1.0",
+    "name": "ALIBABA·ROUTER",
+    "source_of_truth": "docs/ALIBABA_ROUTER_PROTOCOL.md",
+    "short_alias": "А",
+    "save_aliases": ["запомни", "запиши", "сохрани", "закинь", "положи"],
+    "clarification_limit": 1,
+    "c2_c4_control": "C/E + risk + rollback + Commit Boundary"
+  },
   "last_upgrade": {
-    "from": "3.0.0",
-    "to": "4.0.0",
-    "title": "Alibaba Universal Router",
-    "summary": "ALIBABA·ROUTER v2.0.0 превращает естественную речь в точную маршрутизацию, поддерживает рабочую память, обучение запросам, приземление идей, версии, приватность и один следующий шаг."
+    "from": "4.0.0",
+    "to": "4.1.0",
+    "title": "Repository Steward+",
+    "summary": "Добавлены короткий алиас А, команды А запомни/А запиши, полный каталог репозиториев, quarantine для неразобранных репозиториев, проектная маршрутизация и стандарт хранения фото, рисунков, сканов и схем."
   },
   "proof_after_write": [
-    "canonical_context",
-    "intent",
+    "project",
     "repository",
     "path",
     "version",
     "commit_sha",
     "routing_verification"
   ],
-  "next_step": "Использовать короткую команду «Алибаба, покажи мои рабочие архивы» или «Алибаба, приземли: <идея>».",
-  "work_memory_router": {
-    "activation": "Привет, Алибаба",
-    "behavior": "Показать доступные рабочие контуры; по команде ДОСТАНЬ вернуть найденный материал и источник; по команде СОХРАНИ выполнить явный Commit Boundary и записать с версией.",
-    "silent_writes": "forbidden",
-    "privacy_rule": "Содержимое рабочих материалов, клиентские данные и коммерческие условия не публикуются в публичном реестре.",
-    "source_of_truth": "docs/YAKASSA_WORKSPACE_PROTOCOL.md"
-  },
-  "alibaba_router": {
-    "version": "2.0.0",
-    "name": "ALIBABA·ROUTER",
-    "source_of_truth": "docs/ALIBABA_ROUTER_PROTOCOL.md",
-    "default_rule": "Одной естественной фразы достаточно. Алибаба сам определяет действие, объект, контур, репозиторий, категорию, версию, чувствительность и Commit Boundary.",
-    "clarification_limit": 1,
-    "clarification_gate": "Задать один вопрос только если неоднозначность меняет репозиторий, приватность, получателя, публикацию, удаление или C2–C4 действие.",
-    "actions": [
-      "ПОКАЖИ",
-      "СОХРАНИ",
-      "ДОСТАНЬ",
-      "НАЙДИ",
-      "УЛУЧШИ",
-      "ОБНОВИ",
-      "СРАВНИ",
-      "СОЗДАЙ",
-      "АРХИВИРУЙ",
-      "СТАТУС",
-      "ГДЕ Я",
-      "НАУЧИ",
-      "ПРИЗЕМЛИ"
-    ],
-    "modifiers": [
-      "БЕЗ ЗАПИСИ",
-      "ЧЕРНОВИК",
-      "ЧИСТОВИК",
-      "ПОСЛЕДНЕЕ",
-      "НА 10",
-      "СРОЧНО",
-      "ДЛЯ КЛИЕНТА",
-      "ПОКАЖИ ИСТОЧНИК"
-    ],
-    "routing_order": [
-      "explicit repository or context",
-      "product/project",
-      "material type",
-      "current conversation",
-      "safe inbox or one clarification"
-    ],
-    "response_contract": [
-      "Что понял",
-      "Куда направил",
-      "Что сделал или предлагаю",
-      "Версия и источник",
-      "Риск или блокировка",
-      "Один следующий шаг"
-    ],
-    "teach_contract": [
-      "Исправленная команда",
-      "Почему она лучше",
-      "Короткий вариант",
-      "Точный вариант",
-      "Один лучший вариант"
-    ],
-    "ground_contract": [
-      "Факт",
-      "Предположение",
-      "Чего не хватает",
-      "C/E",
-      "Практический эффект",
-      "Риск",
-      "Один следующий шаг"
-    ],
-    "no_connector_behavior": "Не выдумывать доступ. Показать точный repository/path и попросить включить GitHub plugin in Work/Codex."
-  }
+  "next_step": "Использовать команды «А запомни ...», «А запиши ...» и «А достань ...»; отдельно провести bootstrap private-репозиториев dogovory, logos-pandre и logos-fabric."
 }
