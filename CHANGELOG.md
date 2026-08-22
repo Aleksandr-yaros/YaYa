@@ -4,6 +4,7 @@
 
 | Версия | Кодовое имя | Дата | Статус | Главный апгрейд |
 |---|---|---|---|---|
+| v4.3.0 | YaYa-Pay P0 Gate | 2026-08-22 | gate_open | Открыт P0 Gate ЯЯ Оплата: зарегистрирован `Aleksandr-yaros/YaYa-Pay`, определён первый vertical slice, создан `docs/YAYA_PAY_P0_GATE.md` |
 | v4.2.0 | Stepwise Repository Memory | 2026-08-08 | approved | `А запомни`/`А запиши` разведены по смыслу, CURRENT_PROJECT, 12 шагов записи, тестовая матрица |
 | v4.1.0 | Repository Steward+ | 2026-08-08 | approved | Алиас `А`, каталог репозиториев, quarantine и стандарт медиа |
 | v4.0.0 | Alibaba Universal Router | 2026-08-07 | approved | Естественная речь, автодиспетчеризация, обучение и приземление |
@@ -12,7 +13,26 @@
 | v2.5.0 | Routing Integrity | 2026-08-06 | approved | Явная адресация контуров, блокировки и routing tests |
 | v1.0.0 | Genesis | 2026-08-03 | baseline-saved | Создан первоначальный источник истины |
 
-## v4.2.0 — Stepwise Repository Memory
+## v4.3.0 — YaYa-Pay P0 Gate
+
+Дата: 2026-08-22  
+Статус: gate_open  
+Класс: C4 / E4  
+Issue: `Aleksandr-yaros/YaYa#7`
+
+### Что изменено
+
+- Открыт P0 Gate для проекта ЯЯ Оплата;
+- зарегистрирован целевой репозиторий `Aleksandr-yaros/YaYa-Pay` (private);
+- создан `docs/YAYA_PAY_P0_GATE.md` — чеклист P0 Gate, архитектура трассируемости, определение первого vertical slice, требования к Evidence Pack;
+- обновлён `docs/REPOSITORY_CATALOG.md`: статус ЯЯ Оплата → `P0 GATE OPEN — bootstrap required`;
+- обновлён `VERSION.json`: `payment.status` → `P0_GATE_OPEN / BOOTSTRAP_REQUIRED`, добавлена ссылка на P0 Gate документ и issue.
+
+### Следующий шаг
+
+Создать приватный репозиторий `Aleksandr-yaros/YaYa-Pay`, провести bootstrap и верифицировать полную цепочку доказательств (Evidence Pack) перед закрытием P0 Gate.
+
+
 
 Дата: 2026-08-08  
 Статус: approved  

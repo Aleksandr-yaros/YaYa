@@ -1,10 +1,10 @@
 {
   "project": "ЯЯ Реестр",
   "canonical_name": "ЯЯ Реестр",
-  "version": "4.2.0",
-  "codename": "Stepwise Repository Memory",
-  "status": "approved",
-  "saved_at": "2026-08-08T05:03:00Z",
+  "version": "4.3.0",
+  "codename": "YaYa-Pay P0 Gate",
+  "status": "gate_open",
+  "saved_at": "2026-08-22T19:36:00Z",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
@@ -33,7 +33,7 @@
     "bot_factory": {"name":"Фабрика ботов ЯЯ","version":"0.5.0","draft_repository":"Aleksandr-yaros/logos-pandre","canonical_repository":"Aleksandr-yaros/logos-fabric","visibility":"private","status":"repositories_exist_bootstrap_pending","repository_flow":"LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"},
     "yakassa_workspace": {"name":"YaKassa·WORKSPACE","repository":"Aleksandr-yaros/YaKassa-Workspace","visibility":"private","version":"1.1.0","status":"active"},
     "callcenter": {"name":"CallCenter","repository":"Aleksandr-yaros/CallCenter","visibility":"public","status":"separate_project_privacy_review_required"},
-    "payment": {"name":"ЯЯ Оплата","target_repository":"Aleksandr-yaros/YaYa-Pay","visibility":"private","version":"0.1.0","status":"REGISTERED / REPOSITORY_CREATION_PENDING"}
+    "payment": {"name":"ЯЯ Оплата","target_repository":"Aleksandr-yaros/YaYa-Pay","visibility":"private","version":"0.1.0","status":"P0_GATE_OPEN / BOOTSTRAP_REQUIRED","p0_gate":"docs/YAYA_PAY_P0_GATE.md","issue":"Aleksandr-yaros/YaYa#7"}
   },
   "quarantine_repositories": ["Aleksandr-yaros/Dogovora","Aleksandr-yaros/Pesochnica","Aleksandr-yaros/-gpt","Aleksandr-yaros/-1","Aleksandr-yaros/-","Aleksandr-yaros/-2"],
   "routing_rules": {
@@ -51,10 +51,10 @@
   "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
   "salim_profile": {"B":"10/10","C":"C3; C4 for financial/legal actions","E":"E4","V":"10/10","delta_M":2.1,"L":"10/10","R":"10/10","T":"9/10","A":"10/10"},
   "last_upgrade": {
-    "from":"4.1.0",
-    "to":"4.2.0",
-    "title":"Stepwise Repository Memory",
-    "summary":"Разведены А запомни и А запиши, введён CURRENT_PROJECT для там/туда, обязательный 12-шаговый проход записи и ROUTING_TEST_MATRIX."
+    "from":"4.2.0",
+    "to":"4.3.0",
+    "title":"YaYa-Pay P0 Gate",
+    "summary":"Открыт P0 Gate ЯЯ Оплата: зарегистрирован Aleksandr-yaros/YaYa-Pay, создан docs/YAYA_PAY_P0_GATE.md с чеклистом, вертикальным срезом и требованиями к Evidence Pack, issue #7."
   },
   "proof_after_write": ["action","project","repository","path","version","commit_sha","routing_verification","retrieval_command"],
   "next_step": "Bootstrap private project repositories when connector scope allows; use А запомни / А запиши with CURRENT_PROJECT and 12-step verification."

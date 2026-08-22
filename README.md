@@ -50,7 +50,7 @@
 - `Фабрика ботов ЯЯ · чистовик` → private `Aleksandr-yaros/logos-fabric`;
 - `YaKassa·WORKSPACE` → private `Aleksandr-yaros/YaKassa-Workspace`;
 - `CallCenter` → `Aleksandr-yaros/CallCenter` с privacy-проверкой;
-- `ЯЯ Оплата` → целевой private `Aleksandr-yaros/YaYa-Pay` после создания.
+- `ЯЯ Оплата` → целевой private `Aleksandr-yaros/YaYa-Pay` — P0 Gate открыт (`docs/YAYA_PAY_P0_GATE.md`).
 
 Полная карта: `docs/REPOSITORY_CATALOG.md`.
 
