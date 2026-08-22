@@ -1,7 +1,9 @@
-# ЯЯ Оплата
+# YAYA / ЯЯ — Product Implementation Contour
 
-- **Каноническое название:** ЯЯ Оплата
-- **Алиасы:** Проект ЯЯ; ЯЯ QR; ЯЯ Баллы; ЯЯ Точка; ЯЯ ePOS; платёжный ЯЯ
+- **Родительский канонический проект:** `YAYA / ЯЯ` (`project_id=YAYA`)
+- **Название контура реализации:** `YaYa-Pay`
+- **Допустимые алиасы контура:** `YAYA Pay`; `ЯЯ Pay`; `ЯЯ QR`; `ЯЯ ePOS`
+- **Запрещённые алиасы контура:** `YAYA`; `ЯЯ`; `YaYa`; `AIA` — они не идентифицируют отдельный YaYa-Pay
 - **Целевой GitHub-репозиторий:** `Aleksandr-yaros/YaYa-Pay`
 - **Текущая версия:** `v0.1.0`
 - **Статус:** `REGISTERED / REPOSITORY_CREATION_PENDING`
@@ -12,7 +14,7 @@
 
 ## Назначение
 
-Самостоятельный платёжный продукт экосистемы ЯЯ для формирования динамического QR, серверного подтверждения оплаты, синхронного уведомления продавца и покупателя, фискализации, передачи проверяемого чека и управления баллами ЯЯ.
+Дочерний контур реализации проекта YAYA / ЯЯ для работы только с синтетическими платёжными событиями пилота, динамическим QR, доказательствами, чеками и ledger ЯЯ. Контур не принимает, не хранит и не переводит реальные деньги; production, банковские данные и PII запрещены до нового Source of Truth и отдельного Owner GO.
 
 ## Основной жизненный цикл
 
@@ -52,7 +54,7 @@
 
 ## Правило обращения
 
-Обращения «ЯЯ Оплата», «Проект ЯЯ», «ЯЯ QR», «ЯЯ Баллы», «ЯЯ Точка», «ЯЯ ePOS» и «платёжный ЯЯ» означают этот проект, если контекст относится к платежам, QR, чекам или баллам.
+`YAYA / ЯЯ` всегда означает родительский канонический проект. `YaYa-Pay`, `YAYA Pay`, `ЯЯ Pay`, `ЯЯ QR` и `ЯЯ ePOS` означают только дочерний контур реализации. `AIA` не является алиасом этого контура без отдельного Owner GO.
 
 ## Следующий Commit Boundary
 
@@ -88,3 +90,14 @@ Acceptance boundary:
 - one-device failure preserves a safe fallback.
 
 This Registry file is public-safe metadata only. Product code, secrets, device credentials, customer data and private implementation evidence must remain in the future private repository.
+
+## Evolution Upgrade — Canonical Routing v1.4
+
+- **Timestamp:** 2026-08-23 Asia/Bishkek
+- **Status:** APPLIED / PUBLIC-SAFE ROUTER
+- **Canonical project:** `YAYA / ЯЯ`
+- **Child implementation contour:** `YaYa-Pay`
+- **Interactive Atlas:** https://yaya-canonical-atlas.yaros-2397.chatgpt.site
+- **Evidence archive:** https://drive.google.com/drive/folders/17sb4uicD3QosTwXtFEbxIH_y_zuwV-HE
+- **Rule:** one canonical name owns shared aliases; child contours cannot reuse parent aliases.
+- **AIA:** unresolved candidate name; excluded from automatic routing.
