@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "formula_key": "strong_tz_5_methods_v1",
+  "trigger_phrase": "сделай мне техзадание",
+  "methods": [
+    "Impact Mapping",
+    "Story Circle",
+    "Save the Cat",
+    "Example Mapping",
+    "Gherkin"
+  ],
+  "trust_balls": [
+    "Trust Start",
+    "First Offer",
+    "Human Encounter",
+    "Mirror Payment",
+    "Live Operation",
+    "Rescue",
+    "Joy & Return",
+    "Evidence & Growth"
+  ],
+  "spider_legs": [
+    "Owner Preview",
+    "Design Handoff",
+    "Build Contract",
+    "Evidence Registry"
+  ],
+  "artifacts": {
+    "site": {
+      "status": "verified"
+    },
+    "figma": {
+      "status": "blocked",
+      "reason": "Starter plan quota"
+    },
+    "registry": {
+      "status": "verified"
+    },
+    "png": {
+      "count": 16,
+      "status": "verified"
+    }
+  },
+  "scenes": [
+    {
+      "scene_id": "SC-01",
+      "sequence_no": 1,
+      "title": "До золотой нити",
+      "trust_ball": "Trust Start",
+      "system_status": "READY",
+      "png_path": "/png/sc-01.png"
+    },
+    {
+      "scene_id": "SC-02",
+      "sequence_no": 2,
+      "title": "Обещание",
+      "trust_ball": "First Offer",
+      "system_status": "APPROVED",
+      "png_path": "/png/sc-02.png"
+    },
+    {
+      "scene_id": "SC-03",
+      "sequence_no": 3,
+      "title": "Первая встреча",
+      "trust_ball": "Human Encounter",
+      "system_status": "CREATED",
+      "png_path": "/png/sc-03.png"
+    },
+    {
+      "scene_id": "SC-04",
+      "sequence_no": 4,
+      "title": "Сомнение",
+      "trust_ball": "Human Encounter",
+      "system_status": "PENDING",
+      "png_path": "/png/sc-04.png"
+    },
+    {
+      "scene_id": "SC-05",
+      "sequence_no": 5,
+      "title": "Первый ПИК",
+      "trust_ball": "Mirror Payment",
+      "system_status": "CONFIRMED",
+      "png_path": "/png/sc-05.png"
+    },
+    {
+      "scene_id": "SC-06",
+      "sequence_no": 6,
+      "title": "Проверяемый чек",
+      "trust_ball": "Live Operation",
+      "system_status": "DELIVERED",
+      "png_path": "/png/sc-06.png"
+    },
+    {
+      "scene_id": "SC-07",
+      "sequence_no": 7,
+      "title": "Четыре точки",
+      "trust_ball": "Live Operation",
+      "system_status": "ACTIVE",
+      "png_path": "/png/sc-07.png"
+    },
+    {
+      "scene_id": "SC-08",
+      "sequence_no": 8,
+      "title": "Ложная победа",
+      "trust_ball": "Joy & Return",
+      "system_status": "CONFIRMED",
+      "png_path": "/png/sc-08.png"
+    },
+    {
+      "scene_id": "SC-09",
+      "sequence_no": 9,
+      "title": "Сеть погасла",
+      "trust_ball": "Rescue",
+      "system_status": "PENDING",
+      "png_path": "/png/sc-09.png"
+    },
+    {
+      "scene_id": "SC-10",
+      "sequence_no": 10,
+      "title": "Два callback",
+      "trust_ball": "Rescue",
+      "system_status": "REVIEW",
+      "png_path": "/png/sc-10.png"
+    },
+    {
+      "scene_id": "SC-11",
+      "sequence_no": 11,
+      "title": "Evidence отвечает",
+      "trust_ball": "Rescue",
+      "system_status": "DUPLICATE_BLOCKED",
+      "png_path": "/png/sc-11.png"
+    },
+    {
+      "scene_id": "SC-12",
+      "sequence_no": 12,
+      "title": "Новые правила",
+      "trust_ball": "Rescue",
+      "system_status": "APPROVED",
+      "png_path": "/png/sc-12.png"
+    },
+    {
+      "scene_id": "SC-13",
+      "sequence_no": 13,
+      "title": "Честный возврат",
+      "trust_ball": "Rescue",
+      "system_status": "REFUND_CONFIRMED",
+      "png_path": "/png/sc-13.png"
+    },
+    {
+      "scene_id": "SC-14",
+      "sequence_no": 14,
+      "title": "Закрытие смены",
+      "trust_ball": "Evidence & Growth",
+      "system_status": "RECONCILED",
+      "png_path": "/png/sc-14.png"
+    },
+    {
+      "scene_id": "SC-15",
+      "sequence_no": 15,
+      "title": "Новый герой",
+      "trust_ball": "Evidence & Growth",
+      "system_status": "VERIFIED",
+      "png_path": "/png/sc-15.png"
+    }
+  ]
+}
