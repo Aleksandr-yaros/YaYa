@@ -1,0 +1,57 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "yaya-journey-center",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-29",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "triggers": {
+    "crons": ["0 * * * *"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "yaya-journey-center-local",
+      "database_id": "local-placeholder",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "local",
+    "POSTHOG_HOST": "https://eu.i.posthog.com"
+  },
+  "env": {
+    "staging": {
+      "name": "yaya-journey-center-staging",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "yaya-journey-center-staging",
+          "database_id": "replace-after-d1-create",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "staging",
+        "POSTHOG_HOST": "https://eu.i.posthog.com"
+      }
+    },
+    "production": {
+      "name": "yaya-journey-center-production",
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "yaya-journey-center-production",
+          "database_id": "replace-after-d1-create",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "vars": {
+        "ENVIRONMENT": "production",
+        "POSTHOG_HOST": "https://eu.i.posthog.com"
+      }
+    }
+  }
+}
