@@ -104,3 +104,9 @@ BC-JOURNEY-008 | G4 | CHECKPOINT | prove code, behavior, D1 write, and bundle ->
 state: changed
 evidence: evidence/YAYA-JOURNEY-CENTER-PROOF-2026-08-29.md
 resume: publish branch and deploy staging after Cloudflare account binding
+
+BC-JOURNEY-009 | G5 | HANDOFF | confirm Cloudflare identity before remote mutation -> wrangler whoami blocked before network authorization
+state: unchanged
+evidence: repeated network approval cancellation; no remote D1 or Worker created
+resume: connect/authorize the Cloudflare account, then run wrangler whoami
+prevention: never create remote resources until account identity is positively confirmed
