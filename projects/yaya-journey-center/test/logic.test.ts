@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { analyzeFriction, canAutoComplete, validateSteps } from "../src/logic.ts";
+import { PAYMENT_CONFIRMATION_STEPS, confirmationWithinBudget, paymentJourneySteps, validatePaymentSlice } from "../src/paymentSlice.ts";
 
 test("only safe_auto steps can be automated", () => {
   assert.equal(canAutoComplete("safe_auto"), true);
@@ -28,4 +29,22 @@ test("eight-step story is valid", () => {
 
 test("empty story is rejected", () => {
   assert.throws(() => validateSteps([]));
+});
+
+test("payment confirmation slice has eight unique and safe steps", () => {
+  assert.doesNotThrow(validatePaymentSlice);
+  assert.equal(PAYMENT_CONFIRMATION_STEPS.length, 8);
+  assert.doesNotThrow(() => validateSteps(paymentJourneySteps()));
+});
+
+test("payment and consent remain real human actions", () => {
+  for (const step of PAYMENT_CONFIRMATION_STEPS.filter((item) => item.actor === "buyer" || item.actor === "seller")) {
+    if (step.critical) assert.notEqual(step.completionMode, "safe_auto");
+  }
+});
+
+test("seller-visible confirmation must arrive within three seconds", () => {
+  assert.equal(confirmationWithinBudget(10_000, 12_999), true);
+  assert.equal(confirmationWithinBudget(10_000, 13_001), false);
+  assert.equal(confirmationWithinBudget(10_000, 9_999), false);
 });
