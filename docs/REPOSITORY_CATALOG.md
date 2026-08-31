@@ -20,7 +20,7 @@
 | Фабрика ботов ЯЯ — чистовик | `Aleksandr-yaros/logos-fabric` | private | repository exists / bootstrap pending | утверждённый канон, релизные роли, production-промпты, стандарты, проверенные шаблоны и релизы |
 | YaKassa·WORKSPACE | `Aleksandr-yaros/YaKassa-Workspace` | private | active | рабочая память YaKassa, КП, исследования, версии материалов, клиентские и коммерческие рабочие файлы |
 | CallCenter | `Aleksandr-yaros/CallCenter` | public | separate project / privacy review required | только материалы проекта CallCenter, которые допустимы публично; секреты и клиентские данные запрещены |
-| ЯЯ Оплата | `Aleksandr-yaros/YaYa-Pay` | private | repository missing | QR, ePOS, платежи, возвраты, чеки, сверка, баллы и платёжные интеграции после создания репозитория |
+| ЯЯ Оплата | `Aleksandr-yaros/YaYa-Pay` | private | P0 GATE OPEN — bootstrap required | QR, ePOS, платежи, возвраты, чеки, сверка, баллы и платёжные интеграции; P0 Gate: `docs/YAYA_PAY_P0_GATE.md` |
 
 ## 3. Репозитории, которым запрещена автоматическая маршрутизация
 
