@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate required sources
+      - name: Validate public-safe sources
         shell: bash
         run: |
           set -euo pipefail
@@ -24,4 +24,5 @@ jobs:
           python -m json.tool VERSION.json >/dev/null
           grep -q "policy: one-original-one-owner-one-route" registry/repositories.yaml
           grep -q "CORE_REGISTRY_ROUTER" registry/repositories.yaml
-          grep -q "required_missing:" registry/repositories.yaml
+          grep -q "private_topology: OMITTED" registry/repositories.yaml
+          ! grep -Eqi "(password|api[_-]?key|secret:|token:)" registry/repositories.yaml
