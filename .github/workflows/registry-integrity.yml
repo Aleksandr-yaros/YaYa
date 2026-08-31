@@ -1,0 +1,27 @@
+name: Registry integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate required sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s README.md
+          test -s VERSION.json
+          test -s registry/repositories.yaml
+          python -m json.tool VERSION.json >/dev/null
+          grep -q "policy: one-original-one-owner-one-route" registry/repositories.yaml
+          grep -q "CORE_REGISTRY_ROUTER" registry/repositories.yaml
+          grep -q "required_missing:" registry/repositories.yaml
