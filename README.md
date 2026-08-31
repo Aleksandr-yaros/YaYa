@@ -1,97 +1,80 @@
-# ЯЯ Реестр
+# YAYA / ЯЯ — публичный реестр
 
-Текущая версия: **v4.2.0 Stepwise Repository Memory**
+Текущая версия: **v5.0.0 — Unified Spirit & Routing**
 
-`Aleksandr-yaros/YaYa` — управляющий реестр экосистемы ∞ЯЯ.
+Статус: **ACTIVE ROUTER / SAFE EVOLUTION**
 
-Он хранит архитектуру, правила, маршрутизацию, карту проектов, стандарты GitHub и безопасные ссылки. Он не является общим складом договоров, клиентских материалов, кода или рабочих файлов проектов.
+`Aleksandr-yaros/YaYa` — публичный реестр и маршрутизатор YAYA. Приватная топология, договоры, клиентские данные, платёжные секреты и production-код здесь не публикуются.
 
-## Короткое обращение
+## Единый дух
 
-```text
-А <действие> <объект>.
-```
+> YAYA = серверно подтверждённая оплата → доказательство → реальная ценность/подарок бизнеса → использование или передача → повторное полезное действие → измеримый результат.
 
-## Два действия записи
+## Один канон
 
-```text
-А запомни <материал>.
-А запиши <материал>.
-```
+Один проект: **YAYA / ЯЯ**. Один MASTER CANON.
 
-`А запомни` — сделать информацию постоянной версионируемой памятью проекта.
+Статусы материалов:
 
-`А запиши` — сохранить конкретный артефакт проекта: документ, фото, рисунок, схема, скан, таблица, исходник и т.п.
+`CURRENT → CANDIDATE → EXPERIMENT → SUPERSEDED → ARCHIVE`
 
-## CURRENT_PROJECT
+AIA используется как контур продолжения и восстановления, но не заменяет продуктовый канон YAYA.
 
-Последний однозначно определённый проект становится `CURRENT_PROJECT`.
+## Три продуктовые оболочки
 
-```text
-А покажи YaKassa.
-А запомни это там.
-```
+- Seller App — счёт, QR, server confirmation, подарок и результат.
+- Buyer App — проверка оплаты, чек, подарок, использование или передача.
+- Web Owner — доказательства, кампании, партнёры, воронка и release gate.
 
-`там`, `туда`, `сюда`, `здесь`, `в этот проект` относятся только к последнему однозначному проекту.
+## Визуальный канон
 
-## 12 шагов каждой записи
+Текущий кандидат: **VIS-235…VIS-258**, всего 24 логических экрана:
 
-`намерение → объект → проект → репозиторий → приватность → категория/путь → имя/версия → C/E/Salim → Commit Boundary → запись → проверка → доказательство`
+- 8 Seller;
+- 8 Buyer;
+- 8 Owner.
 
-Полный протокол: `docs/GITHUB_OPERATING_PROCEDURE.md`.
+Палитра: **YAYA-PALETTE-04-SOURCE-v1**.
 
-Тесты: `docs/ROUTING_TEST_MATRIX.md`.
+- Seller: `#071426`, действие `#FF4D00`;
+- Buyer: `#FFFDF8`, действие `#16C784`;
+- деньги и ЯЯ: `#D4AF37`.
 
-## Проекты
+## Публичная маршрутизация
 
-- `ЯЯ Реестр` → `Aleksandr-yaros/YaYa`;
-- `Договоры Ярос` → private `Aleksandr-yaros/dogovory`;
-- `Фабрика ботов ЯЯ · черновик` → private `Aleksandr-yaros/logos-pandre`;
-- `Фабрика ботов ЯЯ · чистовик` → private `Aleksandr-yaros/logos-fabric`;
-- `YaKassa·WORKSPACE` → private `Aleksandr-yaros/YaKassa-Workspace`;
-- `CallCenter` → `Aleksandr-yaros/CallCenter` с privacy-проверкой;
-- `ЯЯ Оплата` → целевой private `Aleksandr-yaros/YaYa-Pay` — P0 Gate открыт (`docs/YAYA_PAY_P0_GATE.md`).
+Машинный реестр: [`registry/repositories.yaml`](registry/repositories.yaml).
 
-Полная карта: `docs/REPOSITORY_CATALOG.md`.
+Он содержит только публично безопасные маршруты. Приватная топология намеренно исключена.
 
-## Медиа
+## Правило доказательства
 
-Фото, рисунки, схемы, сканы и скриншоты хранятся в репозитории соответствующего проекта.
+- **SAVED** = запись + независимый read-back.
+- **WORKING** = read-back + CI/status evidence.
+- Иначе = **NOT VERIFIED**.
 
-```text
-assets/images/source/
-assets/images/edited/
-assets/images/diagrams/
-assets/images/screenshots/
-assets/images/scans/
-```
+Каждое улучшение показывается как:
 
-Стандарт: `docs/MEDIA_STORAGE_STANDARD.md`.
+`BEFORE → CHANGE → AFTER → SOURCE QUOTE → EVIDENCE`
 
-## Фабрика ботов
+## Release Gate
 
-```text
-LOGOS·PANDRE → проверка → Commit Boundary → LOGOS·FABRIC
-```
+`решение → канон/роль → requirement → визуал/спека → implementation → CI → staging → Evidence Pack → analytics event → GO / REWORK / STOP`
 
-Черновики и эксперименты → `logos-pandre`.
-Утверждённый канон → `logos-fabric`.
+Если звено отсутствует, проект получает статус **NOT READY**.
 
-## Quarantine
+Текущий статус выпуска: **NOT READY** — успешный CI run, staging и Evidence Pack ещё не подтверждены независимо.
 
-`Dogovora`, `Pesochnica`, `-gpt`, `-1`, `-`, `-2` не участвуют в автоматической маршрутизации.
+## Главная метрика
 
-## Главные источники истины
+**Repeat Useful Action Rate** — доля пользователей, совершивших повторное полезное действие.
 
-- `VERSION.json` — текущая версия и машинный статус;
-- `docs/ALIBABA_ROUTER_PROTOCOL.md` — язык и маршрутизация;
-- `docs/GITHUB_OPERATING_PROCEDURE.md` — пошаговое исполнение;
-- `docs/ROUTING_TEST_MATRIX.md` — тесты;
-- `docs/REPOSITORY_CATALOG.md` — карта проектов;
-- `docs/MEDIA_STORAGE_STANDARD.md` — фото и другие визуальные материалы;
-- `docs/COMMANDS.md` — команды;
-- `CHANGELOG.md` — история.
+## Публичная безопасность
+
+- приватная топология: OMITTED;
+- credentials: FORBIDDEN;
+- customer data: FORBIDDEN;
+- production secrets: FORBIDDEN.
 
 ## Команда «Где я?»
 
-Проверить `VERSION.json`, показать текущую версию, CURRENT_PROJECT при наличии, проекты, репозитории, блокировки, риски, последние изменения и один следующий шаг.
+Прочитать `VERSION.json`, показать текущую версию, статус, последнее доказательство, красные зоны и один следующий P0-шаг.
