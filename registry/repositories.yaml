@@ -1,0 +1,25 @@
+version: 2.1.0
+updated_at: "2026-08-31"
+policy: one-original-one-owner-one-route
+canonical_product: YAYA
+aliases:
+  - "ЯЯ"
+public_routes:
+  - repository: Aleksandr-yaros/YaYa
+    role: CORE_REGISTRY_ROUTER
+    route: canon
+    verified_at: "2026-08-31"
+  - repository: Aleksandr-yaros/CallCenter
+    role: GUARDED_PUBLIC
+    route: public_safe_only
+    verified_at: "2026-08-31"
+  - repository: AleksandrYayaimperia/Yaya1
+    role: CROSS_ACCOUNT_CANDIDATE
+    route: recovery_candidate
+    verified_at: "2026-08-31"
+public_policy:
+  private_topology: OMITTED
+  credentials: FORBIDDEN
+  customer_data: FORBIDDEN
+  production_secrets: FORBIDDEN
+  green_status_requires: "write + independent read-back + operational evidence"
