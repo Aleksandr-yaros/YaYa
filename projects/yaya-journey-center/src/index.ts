@@ -1,4 +1,5 @@
 import { analyzeFriction, canAutoComplete, validateSteps, type CompletionMode, type StepInput } from "./logic";
+import { CONFIRMATION_BUDGET_MS, PAYMENT_CONFIRMATION_STEPS, PAYMENT_CONFIRMATION_STORY_ID } from "./paymentSlice";
 
 type StartJourneyBody = { actorId: string; storyId: string; steps: StepInput[] };
 type StepActionBody = { action: "view" | "attempt" | "block" | "help" | "complete" | "auto_complete"; reason?: string };
@@ -126,6 +127,12 @@ export default {
     try {
       const url = new URL(request.url);
       if (request.method === "GET" && url.pathname === "/health") return json({ ok: true, service: "yaya-journey-center", environment: env.ENVIRONMENT, checks: { worker: "pass", databaseBinding: Boolean(env.DB), posthogConfigured: Boolean(env.POSTHOG_API_KEY) } });
+      if (request.method === "GET" && url.pathname === "/v1/stories/payment-confirmation-3s") return json({
+        storyId: PAYMENT_CONFIRMATION_STORY_ID,
+        confirmationBudgetMs: CONFIRMATION_BUDGET_MS,
+        measurementWindow: "payment_server_verified -> receipt_and_reward_issued",
+        steps: PAYMENT_CONFIRMATION_STEPS,
+      });
       if (request.method === "POST" && url.pathname === "/v1/journeys") return startJourney(request, env, ctx);
       const matched = route(url.pathname);
       if (request.method === "GET" && matched.journeyId && matched.stepNumber === undefined) return getJourney(env, matched.journeyId);
