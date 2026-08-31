@@ -1,61 +1,66 @@
 {
-  "project": "ЯЯ Реестр",
-  "canonical_name": "ЯЯ Реестр",
-  "version": "4.3.0",
-  "codename": "YaYa-Pay P0 Gate",
-  "status": "gate_open",
-  "saved_at": "2026-08-22T19:36:00Z",
+  "project": "YAYA / ЯЯ",
+  "canonical_name": "YAYA MASTER CANON",
+  "version": "5.0.0",
+  "codename": "Unified Spirit & Routing",
+  "status": "ACTIVE_ROUTER_SAFE_EVOLUTION",
+  "canon_fixed_at": "2026-08-28",
+  "synced_at": "2026-08-31",
   "repository": "Aleksandr-yaros/YaYa",
   "branch": "main",
   "brand_symbol": "∞ЯЯ",
-  "agent_role": {
-    "name": "Яя",
-    "short_alias": "А",
-    "short_activation": "А <действие> <объект>.",
-    "remember_command": "А запомни <материал>.",
-    "write_command": "А запиши <материал>.",
-    "remember_meaning": "Постоянная версионируемая память проекта",
-    "write_meaning": "Конкретный артефакт проекта",
-    "current_project_rule": "Последний однозначно определённый проект становится CURRENT_PROJECT; там/туда/сюда/здесь относятся к нему",
-    "is_repository": false
+  "spirit": "Серверно подтверждённая оплата → доказательство → реальная ценность → повторное полезное действие → измеримый результат.",
+  "product_shells": [
+    "Seller App",
+    "Buyer App",
+    "Web Owner"
+  ],
+  "visual_candidate": {
+    "range": "VIS-235..VIS-258",
+    "total": 24,
+    "seller": 8,
+    "buyer": 8,
+    "owner": 8,
+    "palette": "YAYA-PALETTE-04-SOURCE-v1"
   },
   "sources_of_truth": {
-    "repository_catalog": "docs/REPOSITORY_CATALOG.md",
-    "media_standard": "docs/MEDIA_STORAGE_STANDARD.md",
-    "router": "docs/ALIBABA_ROUTER_PROTOCOL.md",
-    "operating_procedure": "docs/GITHUB_OPERATING_PROCEDURE.md",
-    "routing_tests": "docs/ROUTING_TEST_MATRIX.md",
-    "commands": "docs/COMMANDS.md"
+    "master_canon": "Google Drive: YAYA MASTER CANON v5 — Unified Spirit & Routing",
+    "public_registry": "registry/repositories.yaml",
+    "public_ci": ".github/workflows/registry-integrity.yml",
+    "version": "VERSION.json",
+    "history": "CHANGELOG.md"
   },
-  "canonical_contexts": {
-    "registry": {"name":"ЯЯ Реестр","repository":"Aleksandr-yaros/YaYa","visibility":"public","status":"active"},
-    "contracts": {"name":"Договоры Ярос","repository":"Aleksandr-yaros/dogovory","visibility":"private","status":"repository_exists_bootstrap_pending"},
-    "bot_factory": {"name":"Фабрика ботов ЯЯ","version":"0.5.0","draft_repository":"Aleksandr-yaros/logos-pandre","canonical_repository":"Aleksandr-yaros/logos-fabric","visibility":"private","status":"repositories_exist_bootstrap_pending","repository_flow":"LOGOS·PANDRE → review → Commit Boundary → LOGOS·FABRIC"},
-    "yakassa_workspace": {"name":"YaKassa·WORKSPACE","repository":"Aleksandr-yaros/YaKassa-Workspace","visibility":"private","version":"1.1.0","status":"active"},
-    "callcenter": {"name":"CallCenter","repository":"Aleksandr-yaros/CallCenter","visibility":"public","status":"separate_project_privacy_review_required"},
-    "payment": {"name":"ЯЯ Оплата","target_repository":"Aleksandr-yaros/YaYa-Pay","visibility":"private","version":"0.1.0","status":"P0_GATE_OPEN / BOOTSTRAP_REQUIRED","p0_gate":"docs/YAYA_PAY_P0_GATE.md","issue":"Aleksandr-yaros/YaYa#7"}
+  "public_safety": {
+    "private_topology": "OMITTED",
+    "credentials": "FORBIDDEN",
+    "customer_data": "FORBIDDEN",
+    "production_secrets": "FORBIDDEN"
   },
-  "quarantine_repositories": ["Aleksandr-yaros/Dogovora","Aleksandr-yaros/Pesochnica","Aleksandr-yaros/-gpt","Aleksandr-yaros/-1","Aleksandr-yaros/-","Aleksandr-yaros/-2"],
-  "routing_rules": {
-    "one_original_one_source": true,
-    "project_first": true,
-    "current_project_enabled": true,
-    "there_words_require_current_project": true,
-    "generic_document_is_not_legal_keyword": true,
-    "max_clarifying_questions": 1,
-    "silent_writes": "forbidden",
-    "success_requires_commit_sha": true
+  "proof_rule": {
+    "saved": "write + independent read-back",
+    "working": "read-back + operational evidence",
+    "otherwise": "NOT_VERIFIED"
   },
-  "write_pipeline": ["intent","object","project","repository","privacy","category_path","name_version","C_E_Salim","commit_boundary","write","post_write_verification","proof"],
-  "alibaba_router": {"version":"2.2.0","name":"ALIBABA·ROUTER","source_of_truth":"docs/ALIBABA_ROUTER_PROTOCOL.md","short_alias":"А"},
-  "salim_formula": "SLM = (B × C × E) × V × ΔM × L × R × T × A",
-  "salim_profile": {"B":"10/10","C":"C3; C4 for financial/legal actions","E":"E4","V":"10/10","delta_M":2.1,"L":"10/10","R":"10/10","T":"9/10","A":"10/10"},
+  "release_chain": [
+    "decision",
+    "canon_role",
+    "requirement",
+    "visual_spec",
+    "implementation",
+    "CI",
+    "staging",
+    "evidence",
+    "analytics_event",
+    "GO_REWORK_STOP"
+  ],
+  "release_status": "NOT_READY",
+  "release_gap": "Implementation, successful CI run, staging and Evidence Pack are not yet independently verified.",
+  "key_metric": "Repeat Useful Action Rate",
   "last_upgrade": {
-    "from":"4.2.0",
-    "to":"4.3.0",
-    "title":"YaYa-Pay P0 Gate",
-    "summary":"Открыт P0 Gate ЯЯ Оплата: зарегистрирован Aleksandr-yaros/YaYa-Pay, создан docs/YAYA_PAY_P0_GATE.md с чеклистом, вертикальным срезом и требованиями к Evidence Pack, issue #7."
+    "from": "4.3.0",
+    "to": "5.0.0",
+    "title": "Canon alignment and public-safe registry",
+    "summary": "README and VERSION aligned to MASTER CANON v5; public registry and CI source added; private topology removed from public metadata."
   },
-  "proof_after_write": ["action","project","repository","path","version","commit_sha","routing_verification","retrieval_command"],
-  "next_step": "Bootstrap private project repositories when connector scope allows; use А запомни / А запиши with CURRENT_PROJECT and 12-step verification."
+  "next_step": "Verify a successful CI run, then verify the private implementation contour and its Evidence Pack."
 }
