@@ -1,6 +1,7 @@
 {
   "visualContract": "VC-GG-001",
   "intent": "INT-GG-001",
+  "requirement": "REQ-GG-001",
   "requirements": ["REQ-GG-001"],
   "baseline": {"status": "VERIFIED"},
   "task": {"status": "VERIFIED"},
