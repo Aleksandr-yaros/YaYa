@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "visualContract": "VC-184",
+  "source": "voice://VC-184/source-001",
+  "intent": "INT-184-01",
+  "requirement": "REQ-184-03",
+  "baseline": {"status": "VERIFIED", "version": "design-b-v1"},
+  "task": {"status": "VERIFIED", "id": "PAY-248"},
+  "locks": {"status": "VERIFIED", "criticalViolations": 0},
+  "pr": {"status": "VERIFIED", "id": "PR-812"},
+  "ci": {"status": "VERIFIED"},
+  "staging": {"status": "VERIFIED", "uri": "https://staging.example.invalid/pay-248"},
+  "tests": {"status": "VERIFIED", "behaviorScore": 100},
+  "visual": {"status": "VERIFIED", "score": 96.4, "criticalGap": 0},
+  "evidence": {
+    "status": "VERIFIED",
+    "uri": "evidence/VC-184/",
+    "commitSha": "example-sha",
+    "testReport": "evidence/VC-184/report.html",
+    "targetImage": "evidence/VC-184/target.png",
+    "resultImage": "evidence/VC-184/result.png",
+    "diffImage": "evidence/VC-184/diff.png"
+  },
+  "ownerAcceptance": {"status": "MISSING"}
+}
