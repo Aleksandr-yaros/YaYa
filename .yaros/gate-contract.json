@@ -1,0 +1,15 @@
+{
+  "visualContract": "VC-GG-001",
+  "intent": "INT-GG-001",
+  "requirements": ["REQ-GG-001"],
+  "baseline": {"status": "VERIFIED"},
+  "task": {"status": "VERIFIED"},
+  "pr": {"status": "VERIFIED"},
+  "ci": {"status": "VERIFIED"},
+  "staging": {"status": "VERIFIED"},
+  "tests": {"status": "VERIFIED"},
+  "locks": {"status": "VERIFIED"},
+  "visual": {"status": "VERIFIED", "score": 96.4, "criticalGap": 0},
+  "evidence": {"status": "MISSING"},
+  "ownerAcceptance": {"status": "MISSING"}
+}
