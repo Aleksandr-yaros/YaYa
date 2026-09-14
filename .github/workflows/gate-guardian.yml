@@ -1,0 +1,101 @@
+name: Yaros Gate Guardian
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  scope:
+    name: gate/scope
+    runs-on: ubuntu-latest
+    outputs:
+      active: ${{ steps.scope.outputs.active }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: scope
+        shell: bash
+        run: |
+          if [ -s .yaros/gate-contract.json ]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+            echo "Gate Guardian active: .yaros/gate-contract.json found"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+            echo "Gate Guardian passive: no product gate contract in this repository/branch"
+          fi
+
+  requirement:
+    name: gate/requirement
+    needs: scope
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-requirement.sh .yaros/gate-contract.json
+
+  locks:
+    name: gate/locks
+    needs: [scope, requirement]
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-locks.sh .yaros/gate-contract.json
+
+  tests:
+    name: gate/tests
+    needs: [scope, requirement]
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-tests.sh .yaros/gate-contract.json
+
+  visual:
+    name: gate/visual
+    needs: [scope, locks, tests]
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-visual.sh .yaros/gate-contract.json
+
+  evidence:
+    name: gate/evidence
+    needs: [scope, tests, visual]
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-evidence.sh .yaros/gate-contract.json
+
+  thread:
+    name: gate/thread-health
+    needs: [scope, requirement, locks, tests, visual, evidence]
+    if: needs.scope.outputs.active == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash scripts/gate/check-thread.sh .yaros/gate-contract.json merge
+
+  final:
+    name: gate/final
+    needs: [scope, thread]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          if [ "${{ needs.scope.outputs.active }}" != "true" ]; then
+            echo "Gate Guardian passive: registry/non-product change"
+            exit 0
+          fi
+          if [ "${{ needs.thread.result }}" != "success" ]; then
+            echo "Gate Guardian BLOCKED: Golden Thread merge gate did not pass"
+            exit 1
+          fi
+          echo "Gate Guardian PASS: merge gate verified"
